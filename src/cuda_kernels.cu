@@ -1,18 +1,15 @@
-#include "cuda_kernels.cuh"
 #include <iostream>
+
+#include "cuda_kernels.cuh"
 
 void checkCuda(cudaError_t result, const char* msg) {
     if (result != cudaSuccess) {
-        std::cerr << "CUDA Error (" << msg << "): "
-                  << cudaGetErrorString(result) << std::endl;
+        std::cerr << "CUDA Error (" << msg << "): " << cudaGetErrorString(result) << std::endl;
         std::exit(EXIT_FAILURE);
     }
 }
 
-// 1. Addition de matrices
-
-__global__ void matrix_add_kernel(const float* A, const float* B, float* C,
-                                  int rows, int cols) {
+__global__ void matrix_add_kernel(const float* A, const float* B, float* C, int rows, int cols) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
     int size = rows * cols;
     if (idx < size) {
@@ -20,8 +17,7 @@ __global__ void matrix_add_kernel(const float* A, const float* B, float* C,
     }
 }
 
-void gpu_matrix_add(const float* d_A, const float* d_B, float* d_C,
-                    int rows, int cols) {
+void gpu_matrix_add(const float* d_A, const float* d_B, float* d_C, int rows, int cols) {
     int size = rows * cols;
     int blockSize = 256;
     int gridSize = (size + blockSize - 1) / blockSize;
@@ -29,12 +25,9 @@ void gpu_matrix_add(const float* d_A, const float* d_B, float* d_C,
     checkCuda(cudaGetLastError(), "matrix_add_kernel launch");
 }
 
-// 2. Multiplication de matrices naïve
-
-__global__ void matrix_mul_kernel(const float* A, const float* B, float* C,
-                                  int M, int K, int N) {
-    int row = blockIdx.y * blockDim.y + threadIdx.y; // M
-    int col = blockIdx.x * blockDim.x + threadIdx.x; // N
+__global__ void matrix_mul_kernel(const float* A, const float* B, float* C, int M, int K, int N) {
+    int row = blockIdx.y * blockDim.y + threadIdx.y;
+    int col = blockIdx.x * blockDim.x + threadIdx.x;
 
     if (row < M && col < N) {
         float sum = 0.0f;
@@ -45,34 +38,23 @@ __global__ void matrix_mul_kernel(const float* A, const float* B, float* C,
     }
 }
 
-void gpu_matrix_mul(const float* d_A, const float* d_B, float* d_C,
-                    int M, int K, int N) {
+void gpu_matrix_mul(const float* d_A, const float* d_B, float* d_C, int M, int K, int N) {
     dim3 blockSize(16, 16);
-    dim3 gridSize((N + blockSize.x - 1) / blockSize.x,
-                  (M + blockSize.y - 1) / blockSize.y);
+    dim3 gridSize((N + blockSize.x - 1) / blockSize.x, (M + blockSize.y - 1) / blockSize.y);
 
     matrix_mul_kernel<<<gridSize, blockSize>>>(d_A, d_B, d_C, M, K, N);
     checkCuda(cudaGetLastError(), "matrix_mul_kernel launch");
 }
 
-// 3. Feedforward layer: y = x * W^T + b
-// pour batch: x (B x in), W (out x in), y (B x out)
-
-__global__ void feedforward_layer_kernel(const float* input,
-                                         const float* weight,
-                                         const float* bias,
-                                         float* output,
-                                         int batch_size,
-                                         int in_features,
-                                         int out_features) {
-    int b = blockIdx.y * blockDim.y + threadIdx.y; // batch index
-    int j = blockIdx.x * blockDim.x + threadIdx.x; // output neuron
+__global__ void feedforward_layer_kernel(const float* input, const float* weight, const float* bias, float* output, int batch_size, int in_features, int out_features) {
+    int b = blockIdx.y * blockDim.y + threadIdx.y;
+    int j = blockIdx.x * blockDim.x + threadIdx.x;
 
     if (b < batch_size && j < out_features) {
         float sum = 0.0f;
         for (int i = 0; i < in_features; ++i) {
             float x = input[b * in_features + i];
-            float w = weight[j * in_features + i]; // W: row-major (out x in)
+            float w = weight[j * in_features + i];
             sum += x * w;
         }
         sum += bias[j];
@@ -80,25 +62,13 @@ __global__ void feedforward_layer_kernel(const float* input,
     }
 }
 
-void gpu_feedforward_layer(const float* d_input,
-                           const float* d_weight,
-                           const float* d_bias,
-                           float* d_output,
-                           int batch_size,
-                           int in_features,
-                           int out_features) {
+void gpu_feedforward_layer(const float* d_input, const float* d_weight, const float* d_bias, float* d_output, int batch_size, int in_features, int out_features) {
     dim3 blockSize(16, 16);
-    dim3 gridSize((out_features + blockSize.x - 1) / blockSize.x,
-                  (batch_size + blockSize.y - 1) / blockSize.y);
+    dim3 gridSize((out_features + blockSize.x - 1) / blockSize.x, (batch_size + blockSize.y - 1) / blockSize.y);
 
-    feedforward_layer_kernel<<<gridSize, blockSize>>>(
-        d_input, d_weight, d_bias, d_output,
-        batch_size, in_features, out_features
-    );
+    feedforward_layer_kernel<<<gridSize, blockSize>>>(d_input, d_weight, d_bias, d_output, batch_size, in_features, out_features);
     checkCuda(cudaGetLastError(), "feedforward_layer_kernel launch");
 }
-
-// 4. ReLU
 
 __global__ void relu_kernel(float* data, int size) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
@@ -115,32 +85,16 @@ void gpu_relu(float* d_data, int size) {
     checkCuda(cudaGetLastError(), "relu_kernel launch");
 }
 
-__global__ void conv2d_naive_kernel(const float* input,
-                                    const float* weight,
-                                    const float* bias,
-                                    float* output,
-                                    int N,
-                                    int C_in,
-                                    int H,
-                                    int W,
-                                    int C_out,
-                                    int K,
-                                    int H_out,
-                                    int W_out,
-                                    bool apply_relu) {
-    // Chaque thread calcule un (n, c_out, y, x)
-    int n  = blockIdx.z;
+__global__ void conv2d_naive_kernel(const float* input, const float* weight, const float* bias, float* output, int N, int C_in, int H, int W, int C_out, int K, int H_out, int W_out, bool apply_relu) {
+    int n = blockIdx.z;
     int co = blockIdx.y * blockDim.y + threadIdx.y;
-    int y  = blockIdx.x * blockDim.x + threadIdx.x;
+    int y = blockIdx.x * blockDim.x + threadIdx.x;
 
     if (n >= N || co >= C_out || y >= H_out) return;
 
-    // On parcourt x dans une boucle pour économiser des threads
     for (int x = 0; x < W_out; ++x) {
         float sum = bias ? bias[co] : 0.0f;
 
-        // input:  (N, C_in, H, W)
-        // weight: (C_out, C_in, K, K)
         for (int ci = 0; ci < C_in; ++ci) {
             for (int ky = 0; ky < K; ++ky) {
                 for (int kx = 0; kx < K; ++kx) {
@@ -148,7 +102,7 @@ __global__ void conv2d_naive_kernel(const float* input,
                     int in_x = x + kx;
 
                     float v_in = input[(((n * C_in + ci) * H) + in_y) * W + in_x];
-                    float v_w  = weight[(((co * C_in + ci) * K) + ky) * K + kx];
+                    float v_w = weight[(((co * C_in + ci) * K) + ky) * K + kx];
 
                     sum += v_in * v_w;
                 }
@@ -161,53 +115,19 @@ __global__ void conv2d_naive_kernel(const float* input,
     }
 }
 
-void gpu_conv2d_naive(const float* d_input,
-                      const float* d_weight,
-                      const float* d_bias,
-                      float* d_output,
-                      int N,
-                      int C_in,
-                      int H,
-                      int W,
-                      int C_out,
-                      int K,
-                      int H_out,
-                      int W_out) {
+void gpu_conv2d_naive(const float* d_input, const float* d_weight, const float* d_bias, float* d_output, int N, int C_in, int H, int W, int C_out, int K, int H_out, int W_out) {
     dim3 blockSize(16, 16);
-    dim3 gridSize((H_out + blockSize.x - 1) / blockSize.x,
-                  (C_out + blockSize.y - 1) / blockSize.y,
-                  N);
+    dim3 gridSize((H_out + blockSize.x - 1) / blockSize.x, (C_out + blockSize.y - 1) / blockSize.y, N);
 
-    conv2d_naive_kernel<<<gridSize, blockSize>>>(
-        d_input, d_weight, d_bias, d_output,
-        N, C_in, H, W, C_out, K, H_out, W_out,
-        false
-    );
+    conv2d_naive_kernel<<<gridSize, blockSize>>>(d_input, d_weight, d_bias, d_output, N, C_in, H, W, C_out, K, H_out, W_out, false);
     checkCuda(cudaGetLastError(), "conv2d_naive_kernel launch");
 }
 
-void gpu_conv2d_relu_naive(const float* d_input,
-                           const float* d_weight,
-                           const float* d_bias,
-                           float* d_output,
-                           int N,
-                           int C_in,
-                           int H,
-                           int W,
-                           int C_out,
-                           int K,
-                           int H_out,
-                           int W_out) {
+void gpu_conv2d_relu_naive(const float* d_input, const float* d_weight, const float* d_bias, float* d_output, int N, int C_in, int H, int W, int C_out, int K, int H_out, int W_out) {
     dim3 blockSize(16, 16);
-    dim3 gridSize((H_out + blockSize.x - 1) / blockSize.x,
-                  (C_out + blockSize.y - 1) / blockSize.y,
-                  N);
+    dim3 gridSize((H_out + blockSize.x - 1) / blockSize.x, (C_out + blockSize.y - 1) / blockSize.y, N);
 
-    conv2d_naive_kernel<<<gridSize, blockSize>>>(
-        d_input, d_weight, d_bias, d_output,
-        N, C_in, H, W, C_out, K, H_out, W_out,
-        true
-    );
+    conv2d_naive_kernel<<<gridSize, blockSize>>>(d_input, d_weight, d_bias, d_output, N, C_in, H, W, C_out, K, H_out, W_out, true);
     checkCuda(cudaGetLastError(), "conv2d_relu_naive_kernel launch");
 }
 

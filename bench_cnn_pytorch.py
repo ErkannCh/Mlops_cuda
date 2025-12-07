@@ -20,7 +20,6 @@ def main():
 
     x = torch.ones(N, C_in, H, W, device=device)
 
-    # Warmup
     for _ in range(10):
         y = model(x)
     torch.cuda.synchronize()

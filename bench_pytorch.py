@@ -16,10 +16,8 @@ def main():
         torch.nn.Linear(hidden_dim, output_dim),
     ).to(device)
 
-    # Données d'entrée
     x = torch.ones(batch_size, input_dim, device=device)
 
-    # Warmup
     for _ in range(10):
         y = model(x)
     torch.cuda.synchronize()

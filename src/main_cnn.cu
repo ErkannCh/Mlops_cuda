@@ -1,11 +1,12 @@
+#include <cuda_runtime.h>
+
+#include <filesystem>
+#include <iostream>
+#include <vector>
+
 #include "cnn.hpp"
 #include "cuda_kernels.cuh"
 #include "utils.hpp"
-
-#include <cuda_runtime.h>
-#include <iostream>
-#include <vector>
-#include <filesystem>
 
 int main() {
     CNNConfig cfg;
@@ -22,19 +23,9 @@ int main() {
         std::filesystem::create_directory("weights");
     }
 
-    // Création automatique du fichier si besoin
     if (!std::filesystem::exists(weights_path)) {
         std::cout << "Création d'un fichier de poids CNN d'exemple..." << std::endl;
-        bool ok = create_example_cnn_weights_file(
-            weights_path,
-            cfg.N,
-            cfg.C_in,
-            cfg.H,
-            cfg.W,
-            cfg.C_out_conv,
-            cfg.K,
-            cfg.fc_out
-        );
+        bool ok = create_example_cnn_weights_file(weights_path, cfg.N, cfg.C_in, cfg.H, cfg.W, cfg.C_out_conv, cfg.K, cfg.fc_out);
         if (!ok) {
             return EXIT_FAILURE;
         }
@@ -51,13 +42,11 @@ int main() {
     int warmup = 10;
     int iters = 100;
 
-    // Warmup
     for (int i = 0; i < warmup; ++i) {
         cnn.forward(input.data(), output.data());
     }
     checkCuda(cudaDeviceSynchronize(), "sync warmup");
 
-    // Benchmark (timing incluant memcpy)
     cudaEvent_t start, stop;
     cudaEventCreate(&start);
     cudaEventCreate(&stop);
@@ -73,8 +62,7 @@ int main() {
     cudaEventElapsedTime(&ms, start, stop);
     float avg_ms = ms / iters;
 
-    std::cout << "Temps moyen d'inférence CNN (batch_size=" << cfg.N
-              << "): " << avg_ms << " ms\n";
+    std::cout << "Temps moyen d'inférence CNN (batch_size=" << cfg.N << "): " << avg_ms << " ms\n";
 
     std::cout << "Premiers outputs: ";
     for (int i = 0; i < std::min(5, cfg.fc_out); ++i) {
