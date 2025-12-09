@@ -81,13 +81,43 @@ void MLP::load_weights_from_file(const std::string& path) {
 void MLP::forward(const float* input_host, float* output_host, int batch_size) {
     allocate_device_buffers(batch_size);
 
-    checkCuda(cudaMemcpy(d_input, input_host, sizeof(float) * batch_size * config_.input_dim, cudaMemcpyHostToDevice), "memcpy input_host -> d_input");
+    checkCuda(cudaMemcpy(d_input, input_host,
+                         sizeof(float) * batch_size * config_.input_dim,
+                         cudaMemcpyHostToDevice),
+              "memcpy input_host -> d_input");
 
-    gpu_feedforward_layer(d_input, d_W1, d_b1, d_hidden, batch_size, config_.input_dim, config_.hidden_dim);
+    {
+        int threads = 256;
+        int elements = batch_size * config_.hidden_dim;
+        int blocks = (elements + threads - 1) / threads;
+
+        feedforward_layer_kernel_optimized<<<blocks, threads, threads * sizeof(float)>>>(
+            d_input, d_W1, d_b1, d_hidden,
+            batch_size, config_.input_dim, config_.hidden_dim
+        );
+
+        checkCuda(cudaGetLastError(), "feedforward_layer_kernel_optimized layer1");
+    }
 
     gpu_relu(d_hidden, batch_size * config_.hidden_dim);
 
-    gpu_feedforward_layer(d_hidden, d_W2, d_b2, d_output, batch_size, config_.hidden_dim, config_.output_dim);
+    {
+        int threads = 256;
+        int elements = batch_size * config_.output_dim;
+        int blocks = (elements + threads - 1) / threads;
 
-    checkCuda(cudaMemcpy(output_host, d_output, sizeof(float) * batch_size * config_.output_dim, cudaMemcpyDeviceToHost), "memcpy d_output -> output_host");
+        feedforward_layer_kernel_optimized<<<blocks, threads, threads * sizeof(float)>>>(
+            d_hidden, d_W2, d_b2, d_output,
+            batch_size, config_.hidden_dim, config_.output_dim
+        );
+
+        checkCuda(cudaGetLastError(), "feedforward_layer_kernel_optimized layer2");
+    }
+
+    checkCuda(cudaMemcpy(output_host, d_output,
+                         sizeof(float) * batch_size * config_.output_dim,
+                         cudaMemcpyDeviceToHost),
+              "memcpy d_output -> output_host");
 }
+
+
