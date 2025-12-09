@@ -87,22 +87,38 @@ void SimpleRNN::load_weights_from_file(const std::string& path) {
 void SimpleRNN::forward(const float* input_host, float* output_host, int batch_size) {
     allocate_device_buffers(batch_size);
 
-    size_t seq_size = static_cast<size_t>(cfg_.seq_len) * static_cast<size_t>(batch_size) * static_cast<size_t>(cfg_.input_dim);
-
+    size_t seq_size = static_cast<size_t>(cfg_.seq_len) * batch_size * cfg_.input_dim;
     checkCuda(cudaMemcpy(d_input_seq, input_host, sizeof(float) * seq_size, cudaMemcpyHostToDevice), "memcpy input_seq");
 
-    size_t hid_size = static_cast<size_t>(batch_size) * static_cast<size_t>(cfg_.hidden_dim);
+    size_t hid_size = static_cast<size_t>(batch_size) * cfg_.hidden_dim;
     checkCuda(cudaMemset(d_h_prev, 0, sizeof(float) * hid_size), "memset h_prev");
+
+    int threads = 256;
+    size_t sharedMem = threads * sizeof(float);
 
     for (int t = 0; t < cfg_.seq_len; ++t) {
         float* d_x_t = d_input_seq + static_cast<size_t>(t) * batch_size * cfg_.input_dim;
 
-        gpu_feedforward_layer(d_x_t, d_W_xh, d_b_h, d_lin_x, batch_size, cfg_.input_dim, cfg_.hidden_dim);
+        // input -> hidden
+        dim3 grid_x(cfg_.hidden_dim, batch_size);
+        dim3 threads_x(threads);
+        feedforward_layer_kernel_optimized<<<grid_x, threads_x, sharedMem>>>(
+            d_x_t, d_W_xh, d_b_h, d_lin_x,
+            batch_size, cfg_.input_dim, cfg_.hidden_dim
+        );
+        checkCuda(cudaGetLastError(), "feedforward_layer_kernel_optimized x->h");
 
-        gpu_feedforward_layer(d_h_prev, d_W_hh, d_zero_bias, d_lin_h, batch_size, cfg_.hidden_dim, cfg_.hidden_dim);
+        // hidden -> hidden
+        feedforward_layer_kernel_optimized<<<grid_x, threads_x, sharedMem>>>(
+            d_h_prev, d_W_hh, d_zero_bias, d_lin_h,
+            batch_size, cfg_.hidden_dim, cfg_.hidden_dim
+        );
+        checkCuda(cudaGetLastError(), "feedforward_layer_kernel_optimized h->h");
 
+        // sum lin_x + lin_h -> h_t
         gpu_matrix_add(d_lin_x, d_lin_h, d_h_t, batch_size, cfg_.hidden_dim);
 
+        // activation tanh
         gpu_tanh(d_h_t, batch_size * cfg_.hidden_dim);
 
         std::swap(d_h_prev, d_h_t);
@@ -110,3 +126,4 @@ void SimpleRNN::forward(const float* input_host, float* output_host, int batch_s
 
     checkCuda(cudaMemcpy(output_host, d_h_prev, sizeof(float) * hid_size, cudaMemcpyDeviceToHost), "memcpy h_T -> output_host");
 }
+

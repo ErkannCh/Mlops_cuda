@@ -2,6 +2,9 @@
 
 #include <string>
 #include <vector>
+#include <cuda_fp16.h>
+#include <cublas_v2.h>
+#include <cudnn.h>
 
 struct CNNConfig {
     int N;
