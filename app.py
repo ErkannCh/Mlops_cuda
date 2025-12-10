@@ -6,6 +6,7 @@ from pathlib import Path
 import streamlit as st
 import pandas as pd
 
+
 def run_command(cmd, timeout=300):
     """
     Run a shell command and return its stdout as text.
@@ -58,97 +59,103 @@ def parse_mlp_lines(stdout: str, label: str):
 
 
 def section_mlp():
-    st.header("Benchmarks MLP (CUDA vs PyTorch)")
+    main_left_col, main_right_col = st.columns([1, 1])
+    with main_left_col:
+        st.header("Benchmarks MLP (CUDA vs PyTorch)")
+        st.markdown(
+            """
+                Cette section compare les temps d'inférence d'un MLP implémenté :
 
-    st.markdown(
-        """
-Cette section compare les temps d'inférence d'un MLP implémenté :
-
-- en CUDA (`cuda_mlp`)
-- en PyTorch (`bench_mlp_pytorch.py`)
-        """
-    )
-
-    col1, col2 = st.columns(2)
-    with col1:
-        cuda_exec_exists = Path("./build/cuda_mlp").is_file()
-        st.write(f"Exécutable CUDA présent : {'✅' if cuda_exec_exists else '❌'}")
-    with col2:
-        pyt_script_exists = Path("./bench_mlp_pytorch.py").is_file()
-        st.write(
-            f"Script PyTorch présent : {'✅' if pyt_script_exists else '❌'}"
+                - en CUDA (`cuda_mlp`)
+                - en PyTorch (`bench_mlp_pytorch.py`)
+            """
         )
+    with main_right_col:
+        st.image("./images/mlp.png", caption="MLP Architecture", width=200)
 
-    if not cuda_exec_exists:
-        st.warning(
-            "L'exécutable `cuda_mlp` est introuvable. "
-            "Compile le projet avec CMake (`cmake --build .`) avant de lancer les benchmarks."
-        )
-    if not pyt_script_exists:
-        st.warning(
-            "Le script `bench_mlp_pytorch.py` est introuvable à la racine du projet."
-        )
-
-    if not (cuda_exec_exists and pyt_script_exists):
-        return
-
-    # Initialiser l'état la première fois
     if "mlp_df" not in st.session_state:
         st.session_state.mlp_df = None
+    if "mlp_ran" not in st.session_state:
+        st.session_state.mlp_ran = False
+    if "mlp_running" not in st.session_state:
+        st.session_state.mlp_running = False
 
-    # Bouton : on (re)lance les benchmarks et on stocke les résultats
-    if st.button("Lancer les benchmarks MLP"):
-        with st.spinner("Exécution des benchmarks CUDA MLP..."):
+    if not st.session_state.mlp_ran and not st.session_state.mlp_running:
+        st.session_state.mlp_running = True
+        with st.spinner("Exécution automatique des benchmarks MLP..."):
             cuda_out = run_command(["./build/cuda_mlp"])
-        with st.spinner("Exécution des benchmarks PyTorch MLP..."):
             torch_out = run_command([sys.executable, "./bench_mlp_pytorch.py"])
 
-        if cuda_out and torch_out:
-            df_cuda = parse_mlp_lines(cuda_out, "cuda")
-            df_torch = parse_mlp_lines(torch_out, "torch")
+            if cuda_out and torch_out:
+                df_cuda = parse_mlp_lines(cuda_out, "cuda")
+                df_torch = parse_mlp_lines(torch_out, "torch")
 
-            if df_cuda.empty or df_torch.empty:
-                st.warning(
-                    "Impossible de parser les résultats MLP (format inattendu). "
-                    "Vérifie la sortie des programmes."
-                )
-            else:
-                df = pd.merge(
-                    df_cuda,
-                    df_torch,
-                    on=["input_dim", "hidden_dim", "output_dim", "batch_size"],
-                    how="outer",
-                )
-                if "time_ms_cuda" in df.columns and "time_ms_torch" in df.columns:
-                    df["speedup (torch/cuda)"] = (
-                        df["time_ms_torch"] / df["time_ms_cuda"]
+                if df_cuda.empty or df_torch.empty:
+                    st.warning(
+                        "Impossible de parser les résultats MLP (format inattendu). "
+                        "Vérifie la sortie des programmes."
                     )
-                # On stocke le df dans la session
-                st.session_state.mlp_df = df
+                else:
+                    df = pd.merge(
+                        df_cuda,
+                        df_torch,
+                        on=["input_dim", "hidden_dim", "output_dim", "batch_size"],
+                        how="outer",
+                    )
+                    st.session_state.mlp_df = df
+            else:
+                st.warning("Une ou plusieurs exécutions MLP ont échoué ou ont renvoyé une sortie vide.")
+    st.session_state.mlp_running = False
+    st.session_state.mlp_ran = True
 
-    # Partie affichage : indépendante du bouton
+
+
     df = st.session_state.mlp_df
-    if df is not None:
-        st.subheader("Tableau comparatif")
-        st.dataframe(df.sort_values(["hidden_dim", "batch_size"]))
+    if df is not None and not df.empty:
+        left_col, right_col = st.columns([1, 1])
+        df_display = df.drop(columns=["input_dim", "output_dim", "speedup (torch/cuda)"], errors='ignore')
+        df_display = df_display.sort_values(["hidden_dim", "batch_size"]).reset_index(drop=True)
 
-        st.subheader("Visualisation pour un batch_size donné")
-        batch_values = sorted(df["batch_size"].dropna().unique())
-        if batch_values:
-            selected_batch = st.selectbox(
-                "Choisis un batch_size pour la vue ci-dessous",
-                batch_values,
-                index=0,
-            )
-            df_batch = df[df["batch_size"] == selected_batch].copy()
-            df_batch["hidden_dim_str"] = df_batch["hidden_dim"].astype(str)
-            chart_data = df_batch.set_index("hidden_dim_str")[
-                ["time_ms_cuda", "time_ms_torch"]
-            ]
-            st.bar_chart(chart_data)
+        with left_col:
+            st.subheader("Tableau comparatif")
+            st.dataframe(df_display)
+        with right_col:
+            vis_col, batch_col = st.columns([4, 1])
+            with vis_col:
+                st.subheader("Visualisations")
+
+            with batch_col:
+                hidden_values = sorted(df["hidden_dim"].dropna().unique())
+
+                index_hidden = 0
+                if "visual_hidden" in st.session_state:
+                    try:
+                        index_hidden = hidden_values.index(st.session_state.visual_hidden)
+                    except ValueError:
+                        pass
+
+                selected_hidden = st.selectbox(
+                    "hidden dim",
+                    hidden_values,
+                    index=index_hidden,
+                    key="visual_hidden",
+                )
+
+
+            st.markdown("---")
+            df_h = df[df["hidden_dim"] == selected_hidden].copy()
+            if not df_h.empty:
+                df_h_group = (
+                    df_h.groupby("batch_size")[["time_ms_cuda", "time_ms_torch"]]
+                    .mean()
+                    .sort_index()
+                )
+                st.line_chart(df_h_group)
+            else:
+                st.write("Aucune donnée pour le hidden_dim sélectionné.")
+
     else:
-        st.info("Clique sur **Lancer les benchmarks MLP** pour afficher les résultats.")
-
+        st.info("Les benchmarks MLP ont été lancés automatiquement — aucun résultat exploitable n'a été retourné.")
 
 
 def parse_single_time_line(stdout: str, keyword: str):
@@ -164,6 +171,36 @@ def parse_single_time_line(stdout: str, keyword: str):
     return None
 
 
+def run_cnn_benchmarks_once():
+    """
+    Lance automatiquement le benchmark CNN une seule fois par session.
+    Retourne (t_cuda, t_torch) ou (None, None) en cas d'erreur.
+    """
+    if "cnn_ran" not in st.session_state:
+        st.session_state.cnn_ran = False
+    if "cnn_running" not in st.session_state:
+        st.session_state.cnn_running = False
+
+    if not st.session_state.cnn_ran and not st.session_state.cnn_running:
+        st.session_state.cnn_running = True
+        with st.spinner("Exécution automatique du benchmark CNN..."):
+            cuda_out = run_command(["./src/cnn"])
+            torch_out = run_command([sys.executable, "./bench_cnn_pytorch.py"])
+            t_cuda = None
+            t_torch = None
+            if cuda_out and torch_out:
+                t_cuda = parse_single_time_line(cuda_out, "Temps moyen d'inférence CNN")
+                t_torch = parse_single_time_line(torch_out, "Temps moyen d'inférence CNN PyTorch")
+                if t_cuda is None or t_torch is None:
+                    st.warning("Impossible de parser les temps CNN (format inattendu).")
+            else:
+                st.warning("Une ou plusieurs exécutions CNN ont échoué ou renvoyé une sortie vide.")
+        st.session_state.cnn_running = False
+        st.session_state.cnn_ran = True
+        st.session_state.cnn_times = (t_cuda, t_torch)
+    return st.session_state.get("cnn_times", (None, None))
+
+
 def section_cnn():
     st.header("Benchmark CNN (CUDA vs PyTorch)")
 
@@ -176,123 +213,78 @@ Cette section lance :
         """
     )
 
-    cuda_exec_exists = Path("./build/cuda_cnn").is_file()
-    pyt_script_exists = Path("./bench_cnn_pytorch.py").is_file()
-    if not cuda_exec_exists:
-        st.warning(
-            "L'exécutable `cuda_cnn` est introuvable. "
-            "Compile le projet avec CMake (`cmake --build .`) avant de lancer le benchmark."
-        )
-    if not pyt_script_exists:
-        st.warning(
-            "Le script `bench_cnn_pytorch.py` est introuvable à la racine du projet."
-        )
+    t_cuda, t_torch = run_cnn_benchmarks_once()
 
-    if not (cuda_exec_exists and pyt_script_exists):
+    if t_cuda is None or t_torch is None:
+        st.info("Les benchmarks CNN ont été lancés automatiquement — résultats non disponibles ou parsing échoué.")
         return
 
-    if st.button("Lancer le benchmark CNN"):
-        with st.spinner("Exécution du CNN CUDA..."):
-            cuda_out = run_command(["./src/cnn"])
-        with st.spinner("Exécution du CNN PyTorch..."):
-            torch_out = run_command([sys.executable, "./bench_cnn_pytorch.py"])
+    st.subheader("Résumé")
+    df = pd.DataFrame(
+        {
+            "implémentation": ["CUDA", "PyTorch"],
+            "temps_ms": [t_cuda, t_torch],
+        }
+    )
+    st.dataframe(df)
+    st.bar_chart(df.set_index("implémentation"))
 
-        if cuda_out and torch_out:
-            t_cuda = _single_time_line(
-                cuda_out, "Temps moyen d'inférence CNN"
-            )
-            t_torch = parse_single_time_line(
-                torch_out, "Temps moyen d'inférence CNN PyTorch"
-            )
 
-            if t_cuda is None or t_torch is None:
-                st.warning(
-                    "Impossible de parser les temps CNN (format inattendu)."
-                )
-                return
+def run_rnn_benchmarks_once():
+    """
+    Lance automatiquement le benchmark RNN une seule fois par session.
+    Retourne (t_cuda, t_torch) ou (None, None) en cas d'erreur.
+    """
+    if "rnn_ran" not in st.session_state:
+        st.session_state.rnn_ran = False
+    if "rnn_running" not in st.session_state:
+        st.session_state.rnn_running = False
 
-            st.subheader("Résumé")
-            df = pd.DataFrame(
-                {
-                    "implémentation": ["CUDA", "PyTorch"],
-                    "temps_ms": [t_cuda, t_torch],
-                }
-            )
-            st.dataframe(df)
-            st.bar_chart(df.set_index("implémentation"))
+    if not st.session_state.rnn_ran and not st.session_state.rnn_running:
+        st.session_state.rnn_running = True
+        with st.spinner("Exécution automatique du benchmark RNN..."):
+            cuda_out = run_command(["./src/rnn"])
+            torch_out = run_command([sys.executable, "./bench_rnn_pytorch.py"])
+            t_cuda = None
+            t_torch = None
+            if cuda_out and torch_out:
+                # On affiche les sorties brutes (utile pour debug) puis on parse
+                st.subheader("Sortie brute CUDA")
+                st.code(cuda_out)
+                st.subheader("Sortie brute PyTorch")
+                st.code(torch_out)
+
+                t_cuda = parse_single_time_line(cuda_out, "Temps moyen d'inférence RNN")
+                t_torch = parse_single_time_line(torch_out, "Temps moyen d'inférence RNN PyTorch")
+
+                if t_cuda is None or t_torch is None:
+                    st.warning("Impossible de parser les temps RNN (format inattendu).")
+            else:
+                st.warning("Une ou plusieurs exécutions RNN ont échoué ou renvoyé une sortie vide.")
+        st.session_state.rnn_running = False
+        st.session_state.rnn_ran = True
+        st.session_state.rnn_times = (t_cuda, t_torch)
+    return st.session_state.get("rnn_times", (None, None))
 
 
 def section_rnn():
     st.header("Benchmark RNN (CUDA vs PyTorch)")
 
-    st.markdown(
-        """
-Cette section lance :
+    t_cuda, t_torch = run_rnn_benchmarks_once()
 
-- `cuda_rnn` (implémentation CUDA du RNN)
-- `bench_rnn_pytroch.py` (implémentation PyTorch équivalente)
-        """
-    )
-
-    cuda_exec_exists = Path("./build/cuda_rnn").is_file()
-    pyt_script_exists = Path("./bench_rnn_pytorch.py").is_file()
-
-    st.write(f"Exécutable CUDA présent : {'✅' if cuda_exec_exists else '❌'}")
-    st.write(
-        f"Script PyTorch présent : {'✅' if pyt_script_exists else '❌'}"
-    )
-
-    if not cuda_exec_exists:
-        st.warning(
-            "L'exécutable `cuda_rnn` est introuvable. "
-            "Compile le projet avec CMake (`cmake --build .`) avant de lancer le benchmark."
-        )
-    if not pyt_script_exists:
-        st.warning(
-            "Le script `bench_rnn_pytroch.py` est introuvable à la racine du projet."
-        )
-
-    if not (cuda_exec_exists and pyt_script_exists):
+    if t_cuda is None or t_torch is None:
+        st.info("Les benchmarks RNN ont été lancés automatiquement — résultats non disponibles ou parsing échoué.")
         return
 
-    if st.button("Lancer le benchmark RNN"):
-        with st.spinner("Exécution du RNN CUDA..."):
-            cuda_out = run_command(["./src/rnn"])
-        with st.spinner("Exécution du RNN PyTorch..."):
-            torch_out = run_command(
-                [sys.executable, "./bench_rnn_pytorch.py"]
-            )
-
-        if cuda_out:
-            st.subheader("Sortie brute CUDA")
-            st.code(cuda_out)
-        if torch_out:
-            st.subheader("Sortie brute PyTorch")
-            st.code(torch_out)
-
-        if cuda_out and torch_out:
-            t_cuda = parse_single_time_line(
-                cuda_out, "Temps moyen d'inférence RNN"
-            )
-            t_torch = parse_single_time_line(
-                torch_out, "Temps moyen d'inférence RNN PyTorch"
-            )
-
-            if t_cuda is None or t_torch is None:
-                st.warning(
-                    "Impossible de parser les temps RNN (format inattendu)."
-                )
-                return
-
-            st.subheader("Résumé")
-            df = pd.DataFrame(
-                {
-                    "implémentation": ["CUDA", "PyTorch"],
-                    "temps_ms": [t_cuda, t_torch],
-                }
-            )
-            st.dataframe(df)
-            st.bar_chart(df.set_index("implémentation"))
+    st.subheader("Résumé")
+    df = pd.DataFrame(
+        {
+            "implémentation": ["CUDA", "PyTorch"],
+            "temps_ms": [t_cuda, t_torch],
+        }
+    )
+    st.dataframe(df)
+    st.bar_chart(df.set_index("implémentation"))
 
 
 def main():
@@ -317,4 +309,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

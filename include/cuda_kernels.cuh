@@ -68,6 +68,16 @@ void gpu_fused_add_bias_tanh(const float* d_lin_x,
                              int hidden_dim, 
                              cudaStream_t stream);
 
+void gpu_conv2d_tiled(const float* d_input, const float* d_weight,
+                      const float* d_bias, float* d_output,
+                      int N, int C_in, int H, int W,
+                      int C_out, int K, int H_out, int W_out);
+
+void gpu_conv2d_warp(const float* d_input, const float* d_weight,
+                     const float* d_bias, float* d_output,
+                     int N, int C_in, int H, int W,
+                     int C_out, int K, int H_out, int W_out);
+
 void checkCuda(cudaError_t result, const char* msg);
 
 void checkCublas(cublasStatus_t status, const char* msg);

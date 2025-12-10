@@ -18,6 +18,8 @@ struct CNNConfig {
     int fc_out;
 };
 
+enum ConvMode { NAIVE, TILED, WARP };
+
 class SimpleCNN {
    public:
     SimpleCNN(const CNNConfig &cfg);
@@ -25,9 +27,11 @@ class SimpleCNN {
 
     void load_weights_from_file(const std::string &path);
 
-    void forward(const float *input_host, float *output_host);
+    void forward(const float *input_host, float *output_host, ConvMode mode = ConvMode::NAIVE);
 
-    void forward_device(const float *d_input, float *d_output);
+    void SimpleCNN::forward_device(const float* d_input_external, float* d_output_external, ConvMode mode = ConvMode::NAIVE);
+
+    void forward_gpu_only(ConvMode mode = ConvMode::NAIVE);
 
    private:
     CNNConfig cfg_;
@@ -36,6 +40,9 @@ class SimpleCNN {
     std::vector<float> h_conv_b;
     std::vector<float> h_fc_w;
     std::vector<float> h_fc_b;
+
+    ConvMode conv_mode = TILED;
+
 
     float *d_conv_w = nullptr;
     float *d_conv_b = nullptr;

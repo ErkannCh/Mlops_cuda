@@ -521,3 +521,148 @@ void gpu_tanh(float* d_data, int size) {
     tanh_kernel<<<gridSize, blockSize>>>(d_data, size);
     checkCuda(cudaGetLastError(), "tanh_kernel launch");
 }
+
+#define TILE_SIZE 16
+
+__global__ void conv2d_tiled_kernel(
+    const float* __restrict__ input,
+    const float* __restrict__ weight,
+    const float* __restrict__ bias,
+    float* __restrict__ output,
+    int N, int C_in, int H, int W,
+    int C_out, int K, int H_out, int W_out)
+{
+    __shared__ float tile_in[TILE_SIZE + 7][TILE_SIZE + 7]; // pour K ≤ 7
+    __shared__ float tile_w[7][7];
+
+    int n  = blockIdx.z;
+    int co = blockIdx.y;
+
+    int out_y = blockIdx.x / ((W_out + TILE_SIZE - 1) / TILE_SIZE);
+    int out_x = blockIdx.x % ((W_out + TILE_SIZE - 1) / TILE_SIZE);
+
+    int ty = threadIdx.y;
+    int tx = threadIdx.x;
+
+    int in_y = out_y * TILE_SIZE + ty;
+    int in_x = out_x * TILE_SIZE + tx;
+
+    float sum = (bias ? bias[co] : 0.0f);
+
+    for (int ci = 0; ci < C_in; ci++)
+    {
+        // Charger tile input (avec halo)
+        if (in_y < H && in_x < W)
+            tile_in[ty][tx] = input[((n*C_in + ci)*H + in_y)*W + in_x];
+        else
+            tile_in[ty][tx] = 0;
+
+        // Charger kernel poids
+        if (ty < K && tx < K)
+            tile_w[ty][tx] = weight[((co*C_in + ci)*K + ty)*K + tx];
+
+        __syncthreads();
+
+        // Calcul convolution
+        if (out_y*TILE_SIZE + ty < H_out && out_x*TILE_SIZE + tx < W_out)
+        {
+            for (int ky = 0; ky < K; ky++)
+            {
+                for (int kx = 0; kx < K; kx++)
+                {
+                    sum += tile_in[ty + ky][tx + kx] * tile_w[ky][kx];
+                }
+            }
+        }
+
+        __syncthreads();
+    }
+
+    if (out_y*TILE_SIZE + ty < H_out && out_x*TILE_SIZE + tx < W_out)
+    {
+        output[(((n*C_out + co)*H_out + out_y*TILE_SIZE + ty)
+                *W_out + out_x*TILE_SIZE + tx)] = fmaxf(sum, 0.0f);
+    }
+}
+
+void gpu_conv2d_tiled(const float* d_input, const float* d_weight,
+                      const float* d_bias, float* d_output,
+                      int N, int C_in, int H, int W,
+                      int C_out, int K, int H_out, int W_out)
+{
+    dim3 blockSize(TILE_SIZE, TILE_SIZE);
+    dim3 gridSize(
+        (H_out + TILE_SIZE - 1) / TILE_SIZE *
+        (W_out + TILE_SIZE - 1) / TILE_SIZE,
+        C_out,
+        N
+    );
+
+    conv2d_tiled_kernel<<<gridSize, blockSize>>>(
+        d_input, d_weight, d_bias, d_output,
+        N, C_in, H, W, C_out, K, H_out, W_out
+    );
+
+    checkCuda(cudaGetLastError(), "conv2d_tiled_kernel launch");
+}
+
+__inline__ __device__ float warp_reduce_sum(float val) {
+    for(int offset = 16; offset > 0; offset /= 2)
+        val += __shfl_down_sync(0xffffffff, val, offset);
+    return val;
+}
+
+__global__ void conv2d_warp_kernel(
+    const float* __restrict__ input,
+    const float* __restrict__ weight,
+    const float* __restrict__ bias,
+    float* __restrict__ output,
+    int N, int C_in, int H, int W,
+    int C_out, int K, int H_out, int W_out)
+{
+    int n = blockIdx.z;
+    int co = blockIdx.y;
+    int out_idx = blockIdx.x;
+
+    int out_y = out_idx / W_out;
+    int out_x = out_idx % W_out;
+
+    float val = 0.0f;
+
+    for (int ci = 0; ci < C_in; ci++) {
+        for (int ky = 0; ky < K; ky++) {
+            for (int kx = threadIdx.x; kx < K; kx += warpSize) {
+                int in_y = out_y + ky;
+                int in_x = out_x + kx;
+
+                float a = input[((n*C_in + ci)*H + in_y)*W + in_x];
+                float b = weight[((co*C_in + ci)*K + ky)*K + kx];
+                
+                val += a * b;
+            }
+        }
+    }
+
+    val = warp_reduce_sum(val);
+
+    if (threadIdx.x == 0)
+        output[((n*C_out + co)*H_out + out_y)*W_out + out_x] =
+            fmaxf(val + bias[co], 0.0f);
+}
+
+void gpu_conv2d_warp(const float* d_input, const float* d_weight,
+                     const float* d_bias, float* d_output,
+                     int N, int C_in, int H, int W,
+                     int C_out, int K, int H_out, int W_out) 
+{
+    // 1D block of 128 threads (4 warps)
+    dim3 blockSize(128);
+    // grid covers output H*W for each output channel, per batch
+    dim3 gridSize(H_out * W_out, C_out, N);
+
+    conv2d_warp_kernel<<<gridSize, blockSize>>>(
+        d_input, d_weight, d_bias, d_output,
+        N, C_in, H, W, C_out, K, H_out, W_out
+    );
+    checkCuda(cudaGetLastError(), "conv2d_warp_kernel launch");
+}

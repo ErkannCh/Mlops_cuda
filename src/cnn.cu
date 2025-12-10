@@ -96,8 +96,7 @@ static __global__ void flatten_nchw_kernel(const float* input, float* output, in
     output[idx] = input[idx];
 }
 
-// Forward pass avec kernel optimisé
-void SimpleCNN::forward_device(const float* d_input_external, float* d_output_external) {
+void SimpleCNN::forward_device(const float* d_input_external, float* d_output_external, ConvMode mode) {
     int N = cfg_.N;
     int C_in = cfg_.C_in;
     int H = cfg_.H;
@@ -106,9 +105,21 @@ void SimpleCNN::forward_device(const float* d_input_external, float* d_output_ex
     int K = cfg_.K;
     int fc_in_dim = C_out_conv * H_out_ * W_out_;
 
-    // Convolution + ReLU
-    gpu_conv2d_relu_naive(d_input_external, d_conv_w, d_conv_b, d_conv_out,
-                          N, C_in, H, W, C_out_conv, K, H_out_, W_out_);
+    // Convolution selon le mode
+    switch(mode) {
+        case ConvMode::NAIVE:
+            gpu_conv2d_relu_naive(d_input_external, d_conv_w, d_conv_b, d_conv_out,
+                                  N, C_in, H, W, C_out_conv, K, H_out_, W_out_);
+            break;
+        case ConvMode::TILED:
+            gpu_conv2d_tiled(d_input_external, d_conv_w, d_conv_b, d_conv_out,
+                             N, C_in, H, W, C_out_conv, K, H_out_, W_out_);
+            break;
+        case ConvMode::WARP:
+            gpu_conv2d_warp(d_input_external, d_conv_w, d_conv_b, d_conv_out,
+                            N, C_in, H, W, C_out_conv, K, H_out_, W_out_);
+            break;
+    }
 
     // Flatten conv output
     int total_conv = N * C_out_conv * H_out_ * W_out_;
@@ -120,19 +131,63 @@ void SimpleCNN::forward_device(const float* d_input_external, float* d_output_ex
     // Feedforward layer optimisé
     dim3 threads(256);
     dim3 blocks(cfg_.fc_out, N);
-
     feedforward_layer_kernel_optimized<<<blocks, threads, threads.x * sizeof(float)>>>(d_fc_in, d_fc_w, d_fc_b, d_output_external,
-                                                                                    N, fc_in_dim, cfg_.fc_out);
+                                                                                       N, fc_in_dim, cfg_.fc_out);
     checkCuda(cudaGetLastError(), "feedforward_layer_kernel_optimized launch");
 }
 
-void SimpleCNN::forward(const float* input_host, float* output_host) {
+
+void SimpleCNN::forward_gpu_only(ConvMode mode) {
     allocate_device_buffers();
+    forward_device(d_input, d_output, mode);
+}
+
+void SimpleCNN::forward(const float* input_host, float* output_host, ConvMode mode) {
+    allocate_device_buffers();
+
+    // Copier l'input sur le device
     checkCuda(cudaMemcpy(d_input, input_host, sizeof(float) * cfg_.N * cfg_.C_in * cfg_.H * cfg_.W,
                          cudaMemcpyHostToDevice), "memcpy input_host->d_input");
 
-    forward_device(d_input, d_output);
+    // Choix du mode de convolution
+    switch (mode) {
+        case ConvMode::NAIVE:
+            gpu_conv2d_relu_naive(d_input, d_conv_w, d_conv_b, d_conv_out,
+                                  cfg_.N, cfg_.C_in, cfg_.H, cfg_.W,
+                                  cfg_.C_out_conv, cfg_.K, H_out_, W_out_);
+            break;
 
+        case ConvMode::TILED:
+            gpu_conv2d_tiled(d_input, d_conv_w, d_conv_b, d_conv_out,
+                             cfg_.N, cfg_.C_in, cfg_.H, cfg_.W,
+                             cfg_.C_out_conv, cfg_.K, H_out_, W_out_);
+            break;
+
+        case ConvMode::WARP:
+            gpu_conv2d_warp(d_input, d_conv_w, d_conv_b, d_conv_out,
+                            cfg_.N, cfg_.C_in, cfg_.H, cfg_.W,
+                            cfg_.C_out_conv, cfg_.K, H_out_, W_out_);
+            break;
+    }
+
+    // Flatten pour FC
+    int total_conv = cfg_.N * cfg_.C_out_conv * H_out_ * W_out_;
+    int blockSize = 256;
+    int gridSize = (total_conv + blockSize - 1) / blockSize;
+    flatten_nchw_kernel<<<gridSize, blockSize>>>(d_conv_out, d_fc_in, cfg_.N, cfg_.C_out_conv, H_out_, W_out_);
+    checkCuda(cudaGetLastError(), "flatten kernel");
+
+    // Feedforward optimisé
+    dim3 threads(256);
+    dim3 blocks(cfg_.fc_out, cfg_.N);
+    size_t shared_mem_bytes = threads.x * sizeof(float);
+
+    feedforward_layer_kernel_optimized<<<blocks, threads, shared_mem_bytes>>>(
+        d_fc_in, d_fc_w, d_fc_b, d_output, cfg_.N, cfg_.C_out_conv * H_out_ * W_out_, cfg_.fc_out
+    );
+    checkCuda(cudaGetLastError(), "feedforward_layer_kernel_optimized launch");
+
+    // Copier le résultat sur l'hôte
     checkCuda(cudaMemcpy(output_host, d_output, sizeof(float) * cfg_.N * cfg_.fc_out,
                          cudaMemcpyDeviceToHost), "memcpy d_output->output_host");
 }
