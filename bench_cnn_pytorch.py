@@ -3,12 +3,12 @@ import time
 
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    N = 64
+    N = 256
     C_in = 1
-    H = 28
-    W = 28
-    C_out_conv = 8
-    K = 3
+    H = 56
+    W = 56
+    C_out_conv = 16
+    K = 6
     fc_out = 10
 
     model = torch.nn.Sequential(

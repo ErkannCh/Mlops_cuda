@@ -5,6 +5,15 @@
 void gpu_matrix_add_optimized(const float* d_A, const float* d_B, float* d_C,
                               int rows, int cols);
 
+void launch_bias_add_and_tanh_kernel(
+    float* d_output,
+    const float* d_pre_act,
+    const float* d_bias,
+    int num_elements,
+    int hidden_dim,
+    cudaStream_t stream
+);
+
 __global__ void matrix_add_tail_kernel(const float* __restrict__ A,
                                        const float* __restrict__ B,
                                        float* __restrict__ C,

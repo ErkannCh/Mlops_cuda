@@ -19,9 +19,10 @@ class SimpleRNNv2 {
 
     void forward(const float *input_host, float *output_host, int batch_size);
 
+    void forward_gpu_only(int batch_size);
    private:
     RNNv2Config cfg_;
-
+    
     cublasHandle_t cublas_handle_;
     cudaStream_t stream_;
     std::vector<float> h_W_xh;

@@ -21,6 +21,47 @@ inline void checkCuda(cudaError_t result, const char* msg) {
 
 //
 // ────────────────────────────────────────────────────────────────
+// bias add and tanh
+// ────────────────────────────────────────────────────────────────
+//
+
+__global__ void bias_add_and_tanh_kernel(
+    float* d_output,
+    const float* d_pre_act,
+    const float* d_bias,
+    int num_elements,
+    int hidden_dim
+) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    
+    if (idx < num_elements) {
+        int bias_idx = idx % hidden_dim; 
+
+        float activation_input = d_pre_act[idx] + d_bias[bias_idx];
+        d_output[idx] = tanhf(activation_input);
+    }
+}
+
+void launch_bias_add_and_tanh_kernel(
+    float* d_output,
+    const float* d_pre_act,
+    const float* d_bias,
+    int num_elements,
+    int hidden_dim,
+    cudaStream_t stream
+) {
+    const int BLOCK_SIZE = 256;
+    int num_blocks = (num_elements + BLOCK_SIZE - 1) / BLOCK_SIZE;
+
+    bias_add_and_tanh_kernel<<<num_blocks, BLOCK_SIZE, 0, stream>>>(
+        d_output, d_pre_act, d_bias, num_elements, hidden_dim
+    );
+    
+    checkCuda(cudaGetLastError(), "bias_add_and_tanh_kernel launch failed");
+}
+
+//
+// ────────────────────────────────────────────────────────────────
 // Matrix Add
 // ────────────────────────────────────────────────────────────────
 //
@@ -54,15 +95,12 @@ void gpu_matrix_add_optimized(const float* d_A, const float* d_B, float* d_C,
     int size = rows * cols;
     constexpr int blockSize = 256;
 
-    // 1. Vectorized Processing (Main Body)
-    // Process the elements in chunks of 4 (float4)
     constexpr int vec4_elements = 4;
-    int vec4_size = size / vec4_elements; // Number of float4 elements
+    int vec4_size = size / vec4_elements;
 
     if (vec4_size > 0) {
         int vec4_gridSize = (vec4_size + blockSize - 1) / blockSize;
 
-        // Launch the float4 kernel, treating the arrays as float4*
         matrix_add_vec4_kernel<<<vec4_gridSize, blockSize>>>(
             (const float4*)d_A, 
             (const float4*)d_B, 
@@ -72,16 +110,12 @@ void gpu_matrix_add_optimized(const float* d_A, const float* d_B, float* d_C,
         checkCuda(cudaGetLastError(), "matrix_add_vec4_kernel launch");
     }
 
-    // 2. Tail Processing (Cleanup)
-    // Handle the remaining elements (0 to 3 elements) using the scalar kernel
-    int tail_size = size % vec4_elements; // Number of remaining float elements
-    int start_idx = size - tail_size;     // Starting index for the tail
+    int tail_size = size % vec4_elements;
+    int start_idx = size - tail_size;    
 
     if (tail_size > 0) {
-        // Only need one block (or even just one thread) for the small tail
         int tail_gridSize = 1; 
 
-        // Launch the scalar kernel to handle the tail
         matrix_add_tail_kernel<<<tail_gridSize, blockSize>>>(
             d_A, 
             d_B, 
@@ -113,38 +147,31 @@ void gpu_matrix_mul_cublas(cublasHandle_t handle,
                           d_C, N), "CUBLAS Sgemm");
 }
 
-// Kernel CUDA pour la Somme et l'Activation Tanh FUSIONNÉS
-__global__ void fused_add_tanh_kernel(const float* __restrict__ A, // d_lin_x
-                                      const float* __restrict__ B, // d_lin_h
-                                      float* __restrict__ C,       // d_h_t
+
+__global__ void fused_add_tanh_kernel(const float* __restrict__ A, 
+                                      const float* __restrict__ B, 
+                                      float* __restrict__ C,       
                                       int size)
 {
-    // Calcul de l'indice global du thread
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
 
     if (idx < size)
     {
-        // 1. Somme : A[idx] + B[idx]
         float sum = A[idx] + B[idx];
 
-        // 2. Activation : tanh(sum)
-        // La fonction tanh est fournie par la bibliothèque mathématique CUDA
         C[idx] = tanhf(sum);
     }
 }
 
-// Fonction hôte pour lancer le kernel fusionné
 void gpu_fused_add_tanh(const float* d_lin_x, 
                         const float* d_lin_h, 
                         float* d_h_t, 
                         int batch_size, 
                         int hidden_dim)
 {
-    // Taille totale des données à traiter
     int size = batch_size * hidden_dim;
 
-    // Définition des paramètres de lancement
-    constexpr int blockSize = 256; // Un block size standard et efficace
+    constexpr int blockSize = 256;
     int gridSize = (size + blockSize - 1) / blockSize;
 
     // Lancement du kernel

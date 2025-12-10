@@ -12,10 +12,10 @@ int main() {
     CNNConfig cfg;
     cfg.N = 64;
     cfg.C_in = 1;
-    cfg.H = 28;
-    cfg.W = 28;
-    cfg.C_out_conv = 8;
-    cfg.K = 3;
+    cfg.H = 56;
+    cfg.W = 56;
+    cfg.C_out_conv = 16;
+    cfg.K = 6;
     cfg.fc_out = 10;
 
     std::string weights_path = "weights/cnn_weights.txt";

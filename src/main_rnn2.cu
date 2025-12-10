@@ -1,12 +1,18 @@
 #include <cuda_runtime.h>
-
 #include <filesystem>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "cuda_kernels.cuh"
-#include "rnnv2.hpp"    
+#include "rnnv2.hpp"
 #include "utils.hpp"
+
+void sync_and_check(cudaEvent_t event) {
+    checkCuda(cudaEventRecord(event), "eventRecord failed");
+    checkCuda(cudaEventSynchronize(event), "eventSync failed");
+}
+
 
 int main() {
     RNNv2Config cfg;
@@ -38,34 +44,83 @@ int main() {
 
     int warmup = 10;
     int iters = 100;
+    
+    rnn.forward(input.data(), output.data(), batch_size);
+    checkCuda(cudaDeviceSynchronize(), "sync initial setup");
+    
+
+    // ----------------------------------------------------------------------
+    // TEST 1 : Performance Totale (Calcul + Copies H->D et D->H)
+    // Mesure le temps complet, y compris les transferts PCIe.
+    // ----------------------------------------------------------------------
+    std::cout << "\n--- TEST 1 : Performance Totale (Calcul + Copies) ---\n";
+
+    cudaEvent_t start1, stop1;
+    checkCuda(cudaEventCreate(&start1), "eventCreate start1");
+    checkCuda(cudaEventCreate(&stop1), "eventCreate stop1");
 
     for (int i = 0; i < warmup; ++i) {
         rnn.forward(input.data(), output.data(), batch_size);
     }
-    checkCuda(cudaDeviceSynchronize(), "sync warmup");
+    checkCuda(cudaDeviceSynchronize(), "sync warmup 1");
 
-    cudaEvent_t start, stop;
-    checkCuda(cudaEventCreate(&start), "eventCreate start");
-    checkCuda(cudaEventCreate(&stop), "eventCreate stop");
-
-    checkCuda(cudaEventRecord(start), "eventRecord start");
+    checkCuda(cudaEventRecord(start1), "eventRecord start1");
     for (int i = 0; i < iters; ++i) {
         rnn.forward(input.data(), output.data(), batch_size);
     }
-    checkCuda(cudaEventRecord(stop), "eventRecord stop");
-    checkCuda(cudaEventSynchronize(stop), "eventSync stop");
+    sync_and_check(stop1);
 
-    float ms = 0.0f;
-    checkCuda(cudaEventElapsedTime(&ms, start, stop), "eventElapsedTime");
-    float avg_ms = ms / iters;
+    float ms1 = 0.0f;
+    checkCuda(cudaEventElapsedTime(&ms1, start1, stop1), "eventElapsedTime 1");
+    float avg_ms1 = ms1 / iters;
 
-    std::cout << "Temps moyen d'inférence RNN (batch_size=" << batch_size << ", seq_len=" << cfg.seq_len << "): " << avg_ms << " ms\n";
-
+    std::cout << "Temps moyen d'inférence RNN TOTAL (batch=" << batch_size << ", seq=" << cfg.seq_len << "): " << avg_ms1 << " ms\n";
+    
+    // Affichage des outputs pour validation
     std::cout << "Premiers outputs (h_T[0]): ";
     for (int i = 0; i < std::min(5, cfg.hidden_dim); ++i) {
         std::cout << output[i] << " ";
     }
     std::cout << std::endl;
 
+    // ----------------------------------------------------------------------
+    // TEST 2 : Performance du Calcul Pur (GPU-Only)
+    // Isole la boucle temporelle (64x Sgemm + Kernel Fusionné) SANS copie H<->D.
+    // ----------------------------------------------------------------------
+    std::cout << "\n--- TEST 2 : Performance Calcul Pur (GPU-Only) ---\n";
+
+    cudaEvent_t start2, stop2;
+    checkCuda(cudaEventCreate(&start2), "eventCreate start2");
+    checkCuda(cudaEventCreate(&stop2), "eventCreate stop2");
+    
+    // Warmup
+    for (int i = 0; i < warmup; ++i) {
+        rnn.forward_gpu_only(batch_size);
+    }
+    checkCuda(cudaDeviceSynchronize(), "sync warmup 2");
+
+    // Mesure
+    checkCuda(cudaEventRecord(start2), "eventRecord start2");
+    for (int i = 0; i < iters; ++i) {
+        rnn.forward_gpu_only(batch_size);
+    }
+    sync_and_check(stop2);
+
+    float ms2 = 0.0f;
+    checkCuda(cudaEventElapsedTime(&ms2, start2, stop2), "eventElapsedTime 2");
+    float avg_ms2 = ms2 / iters;
+
+    std::cout << "Temps moyen d'inférence RNN GPU-ONLY (batch=" << batch_size << ", seq=" << cfg.seq_len << "): " << avg_ms2 << " ms\n";
+
+    // ----------------------------------------------------------------------
+    // Analyse
+    // ----------------------------------------------------------------------
+    float copy_overhead = avg_ms1 - avg_ms2;
+    std::cout << "\n--- ANALYSE DE LA PERFORMANCE ---\n";
+    std::cout << "Temps total (Test 1) : " << avg_ms1 << " ms\n";
+    std::cout << "Temps calcul seul (Test 2) : " << avg_ms2 << " ms\n";
+    std::cout << "Latence des copies H<->D estimée : " << copy_overhead << " ms\n";
+    std::cout << "\nObjectif PyTorch : 1.99 ms\n";
+    
     return 0;
 }
