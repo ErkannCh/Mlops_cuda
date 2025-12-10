@@ -5,11 +5,11 @@
 #include <vector>
 
 #include "cuda_kernels.cuh"
-#include "rnn.hpp"
+#include "rnnv2.hpp"    
 #include "utils.hpp"
 
 int main() {
-    RNNConfig cfg;
+    RNNv2Config cfg;
     cfg.input_dim = 256;
     cfg.hidden_dim = 512;
     cfg.seq_len = 64;
@@ -28,7 +28,7 @@ int main() {
         }
     }
 
-    SimpleRNN rnn(cfg);
+    SimpleRNNv2 rnn(cfg);
     rnn.load_weights_from_file(weights_path);
 
     std::vector<float> input(cfg.seq_len * batch_size * cfg.input_dim);

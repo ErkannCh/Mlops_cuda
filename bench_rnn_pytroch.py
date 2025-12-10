@@ -6,10 +6,10 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("Device:", device)
 
-    input_dim = 128
-    hidden_dim = 256
-    seq_len = 32
-    batch_size = 64
+    input_dim = 256
+    hidden_dim = 512
+    seq_len = 64
+    batch_size = 1024
 
     rnn = torch.nn.RNN(
         input_size=input_dim,

@@ -1,5 +1,15 @@
 #include <iostream>
+
+#include <cuda_runtime.h>
+#include <cublas_v2.h>
 #include "cuda_kernels.cuh"
+
+inline void checkCublas(cublasStatus_t status, const char* msg) {
+    if (status != CUBLAS_STATUS_SUCCESS) {
+        std::cerr << "CUBLAS Error: " << msg << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+}
 
 inline void checkCuda(cudaError_t result, const char* msg) {
     if (result != cudaSuccess) {
@@ -15,24 +25,181 @@ inline void checkCuda(cudaError_t result, const char* msg) {
 // ────────────────────────────────────────────────────────────────
 //
 
-__global__ void matrix_add_kernel(const float* __restrict__ A,
-                                  const float* __restrict__ B,
-                                  float* __restrict__ C,
-                                  int size) 
+__global__ void matrix_add_tail_kernel(const float* __restrict__ A,
+                                       const float* __restrict__ B,
+                                       float* __restrict__ C,
+                                       int start_idx, int size)
 {
-    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    int idx = start_idx + blockIdx.x * blockDim.x + threadIdx.x;
     if (idx < size)
         C[idx] = A[idx] + B[idx];
 }
 
-void gpu_matrix_add(const float* d_A, const float* d_B, float* d_C,
-                    int rows, int cols) 
+__global__ void matrix_add_vec4_kernel(const float4* __restrict__ A,
+                                       const float4* __restrict__ B,
+                                       float4* __restrict__ C,
+                                       int vec4_size) // size / 4
+{
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    if (idx < vec4_size) {
+        float4 a = A[idx];
+        float4 b = B[idx];
+        C[idx] = make_float4(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
+    }
+}
+
+void gpu_matrix_add_optimized(const float* d_A, const float* d_B, float* d_C,
+                              int rows, int cols)
 {
     int size = rows * cols;
     constexpr int blockSize = 256;
+
+    // 1. Vectorized Processing (Main Body)
+    // Process the elements in chunks of 4 (float4)
+    constexpr int vec4_elements = 4;
+    int vec4_size = size / vec4_elements; // Number of float4 elements
+
+    if (vec4_size > 0) {
+        int vec4_gridSize = (vec4_size + blockSize - 1) / blockSize;
+
+        // Launch the float4 kernel, treating the arrays as float4*
+        matrix_add_vec4_kernel<<<vec4_gridSize, blockSize>>>(
+            (const float4*)d_A, 
+            (const float4*)d_B, 
+            (float4*)d_C, 
+            vec4_size
+        );
+        checkCuda(cudaGetLastError(), "matrix_add_vec4_kernel launch");
+    }
+
+    // 2. Tail Processing (Cleanup)
+    // Handle the remaining elements (0 to 3 elements) using the scalar kernel
+    int tail_size = size % vec4_elements; // Number of remaining float elements
+    int start_idx = size - tail_size;     // Starting index for the tail
+
+    if (tail_size > 0) {
+        // Only need one block (or even just one thread) for the small tail
+        int tail_gridSize = 1; 
+
+        // Launch the scalar kernel to handle the tail
+        matrix_add_tail_kernel<<<tail_gridSize, blockSize>>>(
+            d_A, 
+            d_B, 
+            d_C, 
+            start_idx, 
+            size
+        );
+        checkCuda(cudaGetLastError(), "matrix_add_tail_kernel launch");
+    }
+}
+
+void gpu_matrix_mul_cublas(cublasHandle_t handle,
+                           const float* d_A, 
+                           const float* d_B, 
+                           float* d_C,
+                           int M, int K, int N)
+{
+    const float alpha = 1.0f;
+    const float beta = 0.0f;
+
+    checkCublas(cublasSgemm(handle, 
+                          CUBLAS_OP_N,
+                          CUBLAS_OP_N,
+                          N, M, K,     
+                          &alpha,
+                          d_B, K,      
+                          d_A, M,      
+                          &beta,
+                          d_C, N), "CUBLAS Sgemm");
+}
+
+// Kernel CUDA pour la Somme et l'Activation Tanh FUSIONNÉS
+__global__ void fused_add_tanh_kernel(const float* __restrict__ A, // d_lin_x
+                                      const float* __restrict__ B, // d_lin_h
+                                      float* __restrict__ C,       // d_h_t
+                                      int size)
+{
+    // Calcul de l'indice global du thread
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+
+    if (idx < size)
+    {
+        // 1. Somme : A[idx] + B[idx]
+        float sum = A[idx] + B[idx];
+
+        // 2. Activation : tanh(sum)
+        // La fonction tanh est fournie par la bibliothèque mathématique CUDA
+        C[idx] = tanhf(sum);
+    }
+}
+
+// Fonction hôte pour lancer le kernel fusionné
+void gpu_fused_add_tanh(const float* d_lin_x, 
+                        const float* d_lin_h, 
+                        float* d_h_t, 
+                        int batch_size, 
+                        int hidden_dim)
+{
+    // Taille totale des données à traiter
+    int size = batch_size * hidden_dim;
+
+    // Définition des paramètres de lancement
+    constexpr int blockSize = 256; // Un block size standard et efficace
     int gridSize = (size + blockSize - 1) / blockSize;
-    matrix_add_kernel<<<gridSize, blockSize>>>(d_A, d_B, d_C, size);
-    checkCuda(cudaGetLastError(), "matrix_add_kernel launch");
+
+    // Lancement du kernel
+    fused_add_tanh_kernel<<<gridSize, blockSize>>>(
+        d_lin_x, 
+        d_lin_h, 
+        d_h_t, 
+        size
+    );
+
+    // Vérification des erreurs CUDA après le lancement
+    checkCuda(cudaGetLastError(), "fused_add_tanh_kernel launch");
+}
+
+__global__ void fused_add_bias_tanh_kernel(const float* __restrict__ d_lin_x,      
+                                           const float* __restrict__ d_lin_h,      
+                                           const float* __restrict__ d_b_h,   
+                                           float* __restrict__ d_h_t,            
+                                           int batch_size, 
+                                           int hidden_dim)
+{
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    int size = batch_size * hidden_dim;
+
+    if (idx < size)
+    {
+        int bias_idx = idx % hidden_dim; 
+
+        float sum = d_lin_x[idx] + d_lin_h[idx] + d_b_h[bias_idx];
+
+        d_h_t[idx] = tanhf(sum);
+    }
+}
+
+void gpu_fused_add_bias_tanh(const float* d_lin_x, 
+                             const float* d_lin_h, 
+                             const float* d_b_h, 
+                             float* d_h_t, 
+                             int batch_size, 
+                             int hidden_dim, 
+                             cudaStream_t stream)
+{
+    int size = batch_size * hidden_dim;
+    constexpr int blockSize = 256;
+    int gridSize = (size + blockSize - 1) / blockSize;
+
+    fused_add_bias_tanh_kernel<<<gridSize, blockSize, 0, stream>>>(
+        d_lin_x, 
+        d_lin_h, 
+        d_b_h, 
+        d_h_t, 
+        batch_size, 
+        hidden_dim
+    );
+    checkCuda(cudaGetLastError(), "fused_add_bias_tanh_kernel launch"); 
 }
 
 //

@@ -4,24 +4,23 @@
 #include <string>
 #include <vector>
 
-struct RNNConfig {
+struct RNNv2Config {
     int input_dim;
     int hidden_dim;
     int seq_len;
 };
 
-class SimpleRNN {
+class SimpleRNNv2 {
     
    public:
-    SimpleRNN(const RNNConfig &cfg);
-    ~SimpleRNN();
-
+    SimpleRNNv2(const RNNv2Config &cfg);
+    ~SimpleRNNv2();
     void load_weights_from_file(const std::string &path);
 
     void forward(const float *input_host, float *output_host, int batch_size);
 
    private:
-    RNNConfig cfg_;
+    RNNv2Config cfg_;
 
     cublasHandle_t cublas_handle_;
     cudaStream_t stream_;

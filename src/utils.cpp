@@ -57,6 +57,42 @@ bool create_example_weights_file(const std::string& path, int input_dim, int hid
     return true;
 }
 
+// "Crée-le au format: input_dim hidden_dim seq_len + W_xh + W_hh + b_h"
+bool create_example_rnn_weights_file(const std::string& path, int input_dim, int hidden_dim, int seq_len) {
+    std::ofstream f(path);
+    if (!f.is_open()) {
+        std::cerr << "Impossible de créer le fichier RNN: " << path << std::endl;
+        return false;
+    }
+
+    f << input_dim << " " << hidden_dim << " " << seq_len << "\n";
+
+    std::mt19937 rng(42);
+    std::uniform_real_distribution<float> dist(-0.1f, 0.1f);
+
+    auto write_matrix = [&](int rows, int cols) {
+        for (int r = 0; r < rows; ++r) {
+            for (int c = 0; c < cols; ++c) {
+                f << dist(rng) << " ";
+            }
+            f << "\n";
+        }
+    };
+
+    auto write_vector = [&](int size) {
+        for (int i = 0; i < size; ++i) {
+            f << dist(rng) << " ";
+        }
+        f << "\n";
+    };
+
+    write_matrix(hidden_dim, input_dim);
+    write_matrix(hidden_dim, hidden_dim);
+    write_vector(hidden_dim);
+
+    return true;
+}
+
 bool create_example_cnn_weights_file(const std::string& path, int N, int C_in, int H, int W, int C_out_conv, int K, int fc_out) {
     std::ofstream f(path);
     if (!f.is_open()) {
