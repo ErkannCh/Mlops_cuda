@@ -34,7 +34,19 @@ void gpu_matrix_mul(const float* d_A, const float* d_B, float* d_C, int M, int K
 
 void gpu_feedforward_layer(const float* d_input, const float* d_weight, const float* d_bias, float* d_output, int batch_size, int in_features, int out_features);
 
+__global__ void bias_and_relu_kernel(float* output, const float* bias, int batch_size, int out_dim);
+
 __global__ void feedforward_layer_kernel(const float* input, const float* weight, const float* bias, float* output, int batch, int in_f, int out_f);
+
+void gpu_feedforward_layer_optimized_stream(
+    const float* d_input, 
+    const float* d_weight, 
+    const float* d_bias, 
+    float* d_output,
+    int batch, 
+    int in_f, 
+    int out_f, 
+    cudaStream_t stream);
 
 __global__ void feedforward_layer_kernel_optimized(
     const float* __restrict__ input,
@@ -44,6 +56,7 @@ __global__ void feedforward_layer_kernel_optimized(
     int batch, int in_f, int out_f);
  
 void gpu_relu(float* d_data, int size);
+void gpu_relu2(float* d_data, int size, cudaStream_t stream);
 
 void gpu_tanh(float* d_data, int size);
 

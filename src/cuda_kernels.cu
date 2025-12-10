@@ -19,6 +19,21 @@ inline void checkCuda(cudaError_t result, const char* msg) {
     }
 }
 
+__global__ void bias_and_relu_kernel(float* output, const float* bias, int batch_size, int out_dim) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    int total_elements = batch_size * out_dim;
+    
+    if (idx < total_elements) {
+        int out_index_in_batch = idx % out_dim;
+        
+        // 1. Addition du Biais
+        output[idx] += bias[out_index_in_batch];
+        
+        // 2. Application de ReLU (Activation: max(0, x))
+        output[idx] = (output[idx] > 0.0f) ? output[idx] : 0.0f;
+    }
+}
+
 //
 // ────────────────────────────────────────────────────────────────
 // bias add and tanh
@@ -350,6 +365,34 @@ __global__ void feedforward_layer_kernel_optimized(
     }
 }
 
+void gpu_feedforward_layer_optimized_stream(
+    const float* d_input, 
+    const float* d_weight, 
+    const float* d_bias, 
+    float* d_output,
+    int batch, 
+    int in_f, 
+    int out_f, 
+    cudaStream_t stream) 
+{
+    constexpr int blockSize = 256;
+    dim3 gridSize(out_f, batch);
+    
+    size_t shared_mem_bytes = blockSize * sizeof(float);
+
+    feedforward_layer_kernel_optimized<<<gridSize, blockSize, shared_mem_bytes, stream>>>(
+        d_input, 
+        d_weight, 
+        d_bias, 
+        d_output,
+        batch, 
+        in_f, 
+        out_f
+    );
+
+    checkCuda(cudaGetLastError(), "feedforward_layer_kernel_optimized stream launch failed");
+}
+
 //
 // ────────────────────────────────────────────────────────────────
 // ReLU
@@ -366,6 +409,15 @@ void gpu_relu(float* d_data, int size) {
     constexpr int blockSize = 256;
     int gridSize = (size + blockSize - 1) / blockSize;
     relu_kernel<<<gridSize, blockSize>>>(d_data, size);
+    checkCuda(cudaGetLastError(), "relu_kernel launch");
+}
+
+void gpu_relu2(float* d_data, int size, cudaStream_t stream) {
+    constexpr int blockSize = 256;
+    int gridSize = (size + blockSize - 1) / blockSize;
+    
+    relu_kernel<<<gridSize, blockSize, 0, stream>>>(d_data, size);
+    
     checkCuda(cudaGetLastError(), "relu_kernel launch");
 }
 
