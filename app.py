@@ -104,7 +104,7 @@ def section_mlp():
             """
         )
     with main_right_col:
-        st.image("./images/mlp.png", caption="MLP Architecture", width=200)
+        st.image("./images/mlp.png", caption="MLP Architecture", width=800)
 
     if "mlp_df" not in st.session_state:
         st.session_state.mlp_df = None
@@ -223,7 +223,7 @@ def section_cnn():
     with main_right_col:
         img_path = Path("./images/cnn.png")
         if img_path.exists():
-            st.image(str(img_path), caption="CNN Architecture", width=200)
+            st.image(str(img_path), caption="CNN Architecture", width=800)
 
     if "cnn_df" not in st.session_state:
         st.session_state.cnn_df = None
@@ -467,7 +467,7 @@ def load_rnn_json(filename: str, label: str, schema: str) -> pd.DataFrame:
 
 def section_rnn():
     st.header("Benchmarks RNN")
-    main_left_col, main_right_col = st.columns([1, 1])
+    main_left_col, _ = st.columns([1, 1])
     with main_left_col:
         st.markdown(
             """
@@ -478,8 +478,6 @@ def section_rnn():
             - PyTorch
             """
         )
-    with main_right_col:
-        st.image("./images/rnn.png", caption="RNN Architecture", width=200)
 
     if "rnn_df" not in st.session_state:
         st.session_state.rnn_df = None
