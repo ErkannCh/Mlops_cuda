@@ -22,7 +22,7 @@ float benchmark_mlp_cuda(int input_dim,
                          int output_dim,
                          int batch_size,
                          int iters = 100) {
-    // Chemin du fichier de poids spécifique à cette archi
+                            
     std::ostringstream oss;
     oss << "weights/mlp_"
         << "in" << input_dim << "_hid" << hidden_dim << "_out" << output_dim
@@ -51,13 +51,11 @@ float benchmark_mlp_cuda(int input_dim,
 
     int warmup = 10;
 
-    // Warmup
     for (int i = 0; i < warmup; ++i) {
         mlp.forward(input.data(), output.data(), batch_size);
     }
     checkCuda(cudaDeviceSynchronize(), "cudaDeviceSynchronize warmup");
 
-    // Timing avec cudaEvent
     cudaEvent_t start, stop;
     checkCuda(cudaEventCreate(&start), "eventCreate start");
     checkCuda(cudaEventCreate(&stop), "eventCreate stop");

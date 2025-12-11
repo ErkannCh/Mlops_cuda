@@ -1,0 +1,2690 @@
+[
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.1084,
+    "temps_gpu_only_ms": 0.0635,
+    "latence_copies_ms": 0.0449
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.0744,
+    "temps_gpu_only_ms": 0.0328,
+    "latence_copies_ms": 0.0416
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.1919,
+    "temps_gpu_only_ms": 0.1454,
+    "latence_copies_ms": 0.0465
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.1588,
+    "temps_gpu_only_ms": 0.1147,
+    "latence_copies_ms": 0.044
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.1821,
+    "temps_gpu_only_ms": 0.1373,
+    "latence_copies_ms": 0.0449
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.0892,
+    "temps_gpu_only_ms": 0.0471,
+    "latence_copies_ms": 0.0421
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.2568,
+    "temps_gpu_only_ms": 0.2089,
+    "latence_copies_ms": 0.0479
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.1611,
+    "temps_gpu_only_ms": 0.1187,
+    "latence_copies_ms": 0.0423
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.2617,
+    "temps_gpu_only_ms": 0.2173,
+    "latence_copies_ms": 0.0445
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.1084,
+    "temps_gpu_only_ms": 0.0635,
+    "latence_copies_ms": 0.0449
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.3296,
+    "temps_gpu_only_ms": 0.2808,
+    "latence_copies_ms": 0.0488
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.1709,
+    "temps_gpu_only_ms": 0.1268,
+    "latence_copies_ms": 0.0441
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.3584,
+    "temps_gpu_only_ms": 0.3158,
+    "latence_copies_ms": 0.0426
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.125,
+    "temps_gpu_only_ms": 0.0826,
+    "latence_copies_ms": 0.0425
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.4169,
+    "temps_gpu_only_ms": 0.3693,
+    "latence_copies_ms": 0.0476
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.1832,
+    "temps_gpu_only_ms": 0.1362,
+    "latence_copies_ms": 0.047
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.1576,
+    "temps_gpu_only_ms": 0.1115,
+    "latence_copies_ms": 0.0461
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.0968,
+    "temps_gpu_only_ms": 0.0553,
+    "latence_copies_ms": 0.0415
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.3174,
+    "temps_gpu_only_ms": 0.2684,
+    "latence_copies_ms": 0.049
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.2572,
+    "temps_gpu_only_ms": 0.2118,
+    "latence_copies_ms": 0.0454
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.2811,
+    "temps_gpu_only_ms": 0.2389,
+    "latence_copies_ms": 0.0422
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.123,
+    "temps_gpu_only_ms": 0.0803,
+    "latence_copies_ms": 0.0427
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.4209,
+    "temps_gpu_only_ms": 0.3744,
+    "latence_copies_ms": 0.0465
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.2641,
+    "temps_gpu_only_ms": 0.2171,
+    "latence_copies_ms": 0.047
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.446,
+    "temps_gpu_only_ms": 0.402,
+    "latence_copies_ms": 0.044
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.158,
+    "temps_gpu_only_ms": 0.1149,
+    "latence_copies_ms": 0.0431
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.5655,
+    "temps_gpu_only_ms": 0.5206,
+    "latence_copies_ms": 0.0449
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.2816,
+    "temps_gpu_only_ms": 0.233,
+    "latence_copies_ms": 0.0486
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.6387,
+    "temps_gpu_only_ms": 0.596,
+    "latence_copies_ms": 0.0428
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.195,
+    "temps_gpu_only_ms": 0.1524,
+    "latence_copies_ms": 0.0426
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.7472,
+    "temps_gpu_only_ms": 0.6984,
+    "latence_copies_ms": 0.0488
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.2995,
+    "temps_gpu_only_ms": 0.2546,
+    "latence_copies_ms": 0.0449
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.3379,
+    "temps_gpu_only_ms": 0.2295,
+    "latence_copies_ms": 0.1084
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.21,
+    "temps_gpu_only_ms": 0.1045,
+    "latence_copies_ms": 0.1055
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.6493,
+    "temps_gpu_only_ms": 0.5428,
+    "latence_copies_ms": 0.1065
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.5264,
+    "temps_gpu_only_ms": 0.4179,
+    "latence_copies_ms": 0.1085
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.6133,
+    "temps_gpu_only_ms": 0.51,
+    "latence_copies_ms": 0.1033
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.2666,
+    "temps_gpu_only_ms": 0.1617,
+    "latence_copies_ms": 0.1049
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.9105,
+    "temps_gpu_only_ms": 0.8053,
+    "latence_copies_ms": 0.1053
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.5633,
+    "temps_gpu_only_ms": 0.4563,
+    "latence_copies_ms": 0.107
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.0039,
+    "temps_gpu_only_ms": 0.8945,
+    "latence_copies_ms": 0.1094
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.3452,
+    "temps_gpu_only_ms": 0.2416,
+    "latence_copies_ms": 0.1036
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.2907,
+    "temps_gpu_only_ms": 1.186,
+    "latence_copies_ms": 0.1048
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.6364,
+    "temps_gpu_only_ms": 0.529,
+    "latence_copies_ms": 0.1074
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.5098,
+    "temps_gpu_only_ms": 1.4023,
+    "latence_copies_ms": 0.1075
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.4513,
+    "temps_gpu_only_ms": 0.3443,
+    "latence_copies_ms": 0.107
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.7796,
+    "temps_gpu_only_ms": 1.6723,
+    "latence_copies_ms": 0.1074
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.7142,
+    "temps_gpu_only_ms": 0.609,
+    "latence_copies_ms": 0.1052
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.5621,
+    "temps_gpu_only_ms": 0.4533,
+    "latence_copies_ms": 0.1088
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.3083,
+    "temps_gpu_only_ms": 0.2048,
+    "latence_copies_ms": 0.1035
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.7057,
+    "temps_gpu_only_ms": 1.5977,
+    "latence_copies_ms": 0.108
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.4554,
+    "temps_gpu_only_ms": 1.3457,
+    "latence_copies_ms": 0.1097
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.1156,
+    "temps_gpu_only_ms": 1.0082,
+    "latence_copies_ms": 0.1074
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.4146,
+    "temps_gpu_only_ms": 0.3113,
+    "latence_copies_ms": 0.1033
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.1774,
+    "temps_gpu_only_ms": 2.069,
+    "latence_copies_ms": 0.1083
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.4786,
+    "temps_gpu_only_ms": 1.3703,
+    "latence_copies_ms": 0.1084
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.8912,
+    "temps_gpu_only_ms": 1.7856,
+    "latence_copies_ms": 0.1056
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.5761,
+    "temps_gpu_only_ms": 0.4726,
+    "latence_copies_ms": 0.1036
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.8864,
+    "temps_gpu_only_ms": 2.7766,
+    "latence_copies_ms": 0.1098
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.572,
+    "temps_gpu_only_ms": 1.465,
+    "latence_copies_ms": 0.1071
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.8991,
+    "temps_gpu_only_ms": 2.7922,
+    "latence_copies_ms": 0.1069
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.7831,
+    "temps_gpu_only_ms": 0.6755,
+    "latence_copies_ms": 0.1076
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.8253,
+    "temps_gpu_only_ms": 3.7155,
+    "latence_copies_ms": 0.1098
+  },
+  {
+    "configuration": "N=32, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.7123,
+    "temps_gpu_only_ms": 1.6,
+    "latence_copies_ms": 0.1123
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.1825,
+    "temps_gpu_only_ms": 0.1125,
+    "latence_copies_ms": 0.07
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.1217,
+    "temps_gpu_only_ms": 0.0553,
+    "latence_copies_ms": 0.0663
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.3359,
+    "temps_gpu_only_ms": 0.2645,
+    "latence_copies_ms": 0.0714
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.2798,
+    "temps_gpu_only_ms": 0.2071,
+    "latence_copies_ms": 0.0727
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.3065,
+    "temps_gpu_only_ms": 0.2381,
+    "latence_copies_ms": 0.0684
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.1523,
+    "temps_gpu_only_ms": 0.0807,
+    "latence_copies_ms": 0.0716
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.445,
+    "temps_gpu_only_ms": 0.3725,
+    "latence_copies_ms": 0.0726
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.2874,
+    "temps_gpu_only_ms": 0.2146,
+    "latence_copies_ms": 0.0728
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.4725,
+    "temps_gpu_only_ms": 0.4018,
+    "latence_copies_ms": 0.0707
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.1827,
+    "temps_gpu_only_ms": 0.1151,
+    "latence_copies_ms": 0.0676
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.5906,
+    "temps_gpu_only_ms": 0.519,
+    "latence_copies_ms": 0.0715
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.3065,
+    "temps_gpu_only_ms": 0.2318,
+    "latence_copies_ms": 0.0746
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.6689,
+    "temps_gpu_only_ms": 0.5984,
+    "latence_copies_ms": 0.0705
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.2245,
+    "temps_gpu_only_ms": 0.1544,
+    "latence_copies_ms": 0.0701
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.774,
+    "temps_gpu_only_ms": 0.7005,
+    "latence_copies_ms": 0.0735
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.33,
+    "temps_gpu_only_ms": 0.2567,
+    "latence_copies_ms": 0.0734
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.2859,
+    "temps_gpu_only_ms": 0.2159,
+    "latence_copies_ms": 0.07
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.1724,
+    "temps_gpu_only_ms": 0.1016,
+    "latence_copies_ms": 0.0708
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.5845,
+    "temps_gpu_only_ms": 0.5117,
+    "latence_copies_ms": 0.0728
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.4688,
+    "temps_gpu_only_ms": 0.3972,
+    "latence_copies_ms": 0.0715
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.5375,
+    "temps_gpu_only_ms": 0.4663,
+    "latence_copies_ms": 0.0712
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.2211,
+    "temps_gpu_only_ms": 0.1521,
+    "latence_copies_ms": 0.069
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.7987,
+    "temps_gpu_only_ms": 0.7266,
+    "latence_copies_ms": 0.0722
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.4831,
+    "temps_gpu_only_ms": 0.4122,
+    "latence_copies_ms": 0.0709
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.8621,
+    "temps_gpu_only_ms": 0.7924,
+    "latence_copies_ms": 0.0697
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.2878,
+    "temps_gpu_only_ms": 0.2171,
+    "latence_copies_ms": 0.0707
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.0895,
+    "temps_gpu_only_ms": 1.0163,
+    "latence_copies_ms": 0.0731
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.5129,
+    "temps_gpu_only_ms": 0.4407,
+    "latence_copies_ms": 0.0722
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.2515,
+    "temps_gpu_only_ms": 1.1823,
+    "latence_copies_ms": 0.0692
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.3644,
+    "temps_gpu_only_ms": 0.2934,
+    "latence_copies_ms": 0.071
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.4481,
+    "temps_gpu_only_ms": 1.3755,
+    "latence_copies_ms": 0.0725
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.5583,
+    "temps_gpu_only_ms": 0.4866,
+    "latence_copies_ms": 0.0717
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.6119,
+    "temps_gpu_only_ms": 0.4481,
+    "latence_copies_ms": 0.1638
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.364,
+    "temps_gpu_only_ms": 0.1988,
+    "latence_copies_ms": 0.1652
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.4182,
+    "temps_gpu_only_ms": 1.2484,
+    "latence_copies_ms": 0.1698
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.1687,
+    "temps_gpu_only_ms": 0.9998,
+    "latence_copies_ms": 0.1689
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.173,
+    "temps_gpu_only_ms": 1.0045,
+    "latence_copies_ms": 0.1686
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.4747,
+    "temps_gpu_only_ms": 0.3092,
+    "latence_copies_ms": 0.1654
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.8127,
+    "temps_gpu_only_ms": 1.6436,
+    "latence_copies_ms": 0.1691
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.1154,
+    "temps_gpu_only_ms": 0.9453,
+    "latence_copies_ms": 0.1701
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.9514,
+    "temps_gpu_only_ms": 1.7816,
+    "latence_copies_ms": 0.1697
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.6348,
+    "temps_gpu_only_ms": 0.4699,
+    "latence_copies_ms": 0.1649
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.5449,
+    "temps_gpu_only_ms": 2.3731,
+    "latence_copies_ms": 0.1718
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.2311,
+    "temps_gpu_only_ms": 1.0629,
+    "latence_copies_ms": 0.1682
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.9516,
+    "temps_gpu_only_ms": 2.785,
+    "latence_copies_ms": 0.1667
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.8422,
+    "temps_gpu_only_ms": 0.6743,
+    "latence_copies_ms": 0.1679
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.4725,
+    "temps_gpu_only_ms": 3.3005,
+    "latence_copies_ms": 0.172
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.3565,
+    "temps_gpu_only_ms": 1.1907,
+    "latence_copies_ms": 0.1658
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.116,
+    "temps_gpu_only_ms": 0.9677,
+    "latence_copies_ms": 0.1483
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.6595,
+    "temps_gpu_only_ms": 0.4905,
+    "latence_copies_ms": 0.169
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.1558,
+    "temps_gpu_only_ms": 2.9873,
+    "latence_copies_ms": 0.1686
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.6959,
+    "temps_gpu_only_ms": 2.5285,
+    "latence_copies_ms": 0.1674
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.0757,
+    "temps_gpu_only_ms": 1.9082,
+    "latence_copies_ms": 0.1675
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.8604,
+    "temps_gpu_only_ms": 0.6968,
+    "latence_copies_ms": 0.1636
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 4.0191,
+    "temps_gpu_only_ms": 3.8473,
+    "latence_copies_ms": 0.1718
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.8044,
+    "temps_gpu_only_ms": 2.637,
+    "latence_copies_ms": 0.1674
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.3669,
+    "temps_gpu_only_ms": 3.1985,
+    "latence_copies_ms": 0.1683
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.1734,
+    "temps_gpu_only_ms": 1.0086,
+    "latence_copies_ms": 0.1648
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 5.1782,
+    "temps_gpu_only_ms": 5.0223,
+    "latence_copies_ms": 0.1558
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.9837,
+    "temps_gpu_only_ms": 2.8202,
+    "latence_copies_ms": 0.1635
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 5.1093,
+    "temps_gpu_only_ms": 4.9378,
+    "latence_copies_ms": 0.1715
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.5731,
+    "temps_gpu_only_ms": 1.4072,
+    "latence_copies_ms": 0.1659
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 6.8105,
+    "temps_gpu_only_ms": 6.6551,
+    "latence_copies_ms": 0.1553
+  },
+  {
+    "configuration": "N=64, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 3.2658,
+    "temps_gpu_only_ms": 3.095,
+    "latence_copies_ms": 0.1708
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.3256,
+    "temps_gpu_only_ms": 0.2174,
+    "latence_copies_ms": 0.1082
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.2075,
+    "temps_gpu_only_ms": 0.1029,
+    "latence_copies_ms": 0.1046
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.617,
+    "temps_gpu_only_ms": 0.5107,
+    "latence_copies_ms": 0.1063
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.504,
+    "temps_gpu_only_ms": 0.3969,
+    "latence_copies_ms": 0.1071
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.5742,
+    "temps_gpu_only_ms": 0.4678,
+    "latence_copies_ms": 0.1064
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.2568,
+    "temps_gpu_only_ms": 0.1539,
+    "latence_copies_ms": 0.1029
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.8362,
+    "temps_gpu_only_ms": 0.7265,
+    "latence_copies_ms": 0.1097
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.5183,
+    "temps_gpu_only_ms": 0.4118,
+    "latence_copies_ms": 0.1065
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.8995,
+    "temps_gpu_only_ms": 0.7932,
+    "latence_copies_ms": 0.1063
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.328,
+    "temps_gpu_only_ms": 0.2199,
+    "latence_copies_ms": 0.1081
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.1314,
+    "temps_gpu_only_ms": 1.0221,
+    "latence_copies_ms": 0.1093
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.5542,
+    "temps_gpu_only_ms": 0.4477,
+    "latence_copies_ms": 0.1065
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.288,
+    "temps_gpu_only_ms": 1.1829,
+    "latence_copies_ms": 0.1051
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.4013,
+    "temps_gpu_only_ms": 0.2967,
+    "latence_copies_ms": 0.1046
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.489,
+    "temps_gpu_only_ms": 1.3799,
+    "latence_copies_ms": 0.1091
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.6027,
+    "temps_gpu_only_ms": 0.4951,
+    "latence_copies_ms": 0.1076
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.5004,
+    "temps_gpu_only_ms": 0.3958,
+    "latence_copies_ms": 0.1046
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.3036,
+    "temps_gpu_only_ms": 0.1992,
+    "latence_copies_ms": 0.1043
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.0645,
+    "temps_gpu_only_ms": 0.956,
+    "latence_copies_ms": 0.1085
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.8672,
+    "temps_gpu_only_ms": 0.759,
+    "latence_copies_ms": 0.1082
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.9243,
+    "temps_gpu_only_ms": 0.8219,
+    "latence_copies_ms": 0.1024
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.4033,
+    "temps_gpu_only_ms": 0.3011,
+    "latence_copies_ms": 0.1023
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.4159,
+    "temps_gpu_only_ms": 1.3086,
+    "latence_copies_ms": 0.1073
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.8971,
+    "temps_gpu_only_ms": 0.7882,
+    "latence_copies_ms": 0.1089
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.4958,
+    "temps_gpu_only_ms": 1.3915,
+    "latence_copies_ms": 0.1043
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.5337,
+    "temps_gpu_only_ms": 0.4268,
+    "latence_copies_ms": 0.1068
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.9271,
+    "temps_gpu_only_ms": 1.8198,
+    "latence_copies_ms": 0.1072
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.9643,
+    "temps_gpu_only_ms": 0.8548,
+    "latence_copies_ms": 0.1095
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.1836,
+    "temps_gpu_only_ms": 2.0762,
+    "latence_copies_ms": 0.1074
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.6848,
+    "temps_gpu_only_ms": 0.579,
+    "latence_copies_ms": 0.1058
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.5506,
+    "temps_gpu_only_ms": 2.4427,
+    "latence_copies_ms": 0.1079
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.0543,
+    "temps_gpu_only_ms": 0.9447,
+    "latence_copies_ms": 0.1096
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.2414,
+    "temps_gpu_only_ms": 0.9586,
+    "latence_copies_ms": 0.2828
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.7567,
+    "temps_gpu_only_ms": 0.4727,
+    "latence_copies_ms": 0.284
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.2521,
+    "temps_gpu_only_ms": 2.9609,
+    "latence_copies_ms": 0.2912
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.7691,
+    "temps_gpu_only_ms": 2.4779,
+    "latence_copies_ms": 0.2911
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.1807,
+    "temps_gpu_only_ms": 1.8941,
+    "latence_copies_ms": 0.2866
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.9622,
+    "temps_gpu_only_ms": 0.6764,
+    "latence_copies_ms": 0.2859
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 4.0343,
+    "temps_gpu_only_ms": 3.7441,
+    "latence_copies_ms": 0.2901
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.8167,
+    "temps_gpu_only_ms": 2.5259,
+    "latence_copies_ms": 0.2908
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.48,
+    "temps_gpu_only_ms": 3.1919,
+    "latence_copies_ms": 0.2881
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.272,
+    "temps_gpu_only_ms": 0.9877,
+    "latence_copies_ms": 0.2843
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 5.1945,
+    "temps_gpu_only_ms": 4.9027,
+    "latence_copies_ms": 0.2918
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 3.0072,
+    "temps_gpu_only_ms": 2.7206,
+    "latence_copies_ms": 0.2866
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 5.2223,
+    "temps_gpu_only_ms": 4.9351,
+    "latence_copies_ms": 0.2873
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.6768,
+    "temps_gpu_only_ms": 1.3904,
+    "latence_copies_ms": 0.2864
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 6.6969,
+    "temps_gpu_only_ms": 6.4064,
+    "latence_copies_ms": 0.2904
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 3.1532,
+    "temps_gpu_only_ms": 2.8614,
+    "latence_copies_ms": 0.2918
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.3864,
+    "temps_gpu_only_ms": 2.1003,
+    "latence_copies_ms": 0.2861
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.5149,
+    "temps_gpu_only_ms": 1.2264,
+    "latence_copies_ms": 0.2886
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 6.0728,
+    "temps_gpu_only_ms": 5.7778,
+    "latence_copies_ms": 0.295
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 5.1962,
+    "temps_gpu_only_ms": 4.9094,
+    "latence_copies_ms": 0.2868
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 4.2994,
+    "temps_gpu_only_ms": 4.0085,
+    "latence_copies_ms": 0.2909
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.8928,
+    "temps_gpu_only_ms": 1.6076,
+    "latence_copies_ms": 0.2852
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 7.8623,
+    "temps_gpu_only_ms": 7.5638,
+    "latence_copies_ms": 0.2985
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 5.4523,
+    "temps_gpu_only_ms": 5.1659,
+    "latence_copies_ms": 0.2864
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 6.9408,
+    "temps_gpu_only_ms": 6.6473,
+    "latence_copies_ms": 0.2934
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 2.512,
+    "temps_gpu_only_ms": 2.2274,
+    "latence_copies_ms": 0.2846
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 10.2599,
+    "temps_gpu_only_ms": 9.9554,
+    "latence_copies_ms": 0.3045
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 5.8351,
+    "temps_gpu_only_ms": 5.5416,
+    "latence_copies_ms": 0.2935
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 10.2955,
+    "temps_gpu_only_ms": 10.0103,
+    "latence_copies_ms": 0.2852
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 3.2641,
+    "temps_gpu_only_ms": 2.9766,
+    "latence_copies_ms": 0.2875
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 13.408,
+    "temps_gpu_only_ms": 13.1178,
+    "latence_copies_ms": 0.2902
+  },
+  {
+    "configuration": "N=128, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 6.3914,
+    "temps_gpu_only_ms": 6.1061,
+    "latence_copies_ms": 0.2853
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.5641,
+    "temps_gpu_only_ms": 0.3932,
+    "latence_copies_ms": 0.171
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.3661,
+    "temps_gpu_only_ms": 0.1962,
+    "latence_copies_ms": 0.1699
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.1473,
+    "temps_gpu_only_ms": 0.9698,
+    "latence_copies_ms": 0.1775
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.9517,
+    "temps_gpu_only_ms": 0.7721,
+    "latence_copies_ms": 0.1797
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.9833,
+    "temps_gpu_only_ms": 0.8148,
+    "latence_copies_ms": 0.1685
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.4637,
+    "temps_gpu_only_ms": 0.2946,
+    "latence_copies_ms": 0.1692
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.4994,
+    "temps_gpu_only_ms": 1.3225,
+    "latence_copies_ms": 0.1769
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 0.9763,
+    "temps_gpu_only_ms": 0.8023,
+    "latence_copies_ms": 0.1739
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.5588,
+    "temps_gpu_only_ms": 1.387,
+    "latence_copies_ms": 0.1717
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.592,
+    "temps_gpu_only_ms": 0.4249,
+    "latence_copies_ms": 0.1671
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.0097,
+    "temps_gpu_only_ms": 1.8363,
+    "latence_copies_ms": 0.1734
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.0491,
+    "temps_gpu_only_ms": 0.873,
+    "latence_copies_ms": 0.1761
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.2392,
+    "temps_gpu_only_ms": 2.0717,
+    "latence_copies_ms": 0.1675
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.7469,
+    "temps_gpu_only_ms": 0.5778,
+    "latence_copies_ms": 0.1692
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.638,
+    "temps_gpu_only_ms": 2.464,
+    "latence_copies_ms": 0.174
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.1463,
+    "temps_gpu_only_ms": 0.9701,
+    "latence_copies_ms": 0.1761
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 0.9899,
+    "temps_gpu_only_ms": 0.8193,
+    "latence_copies_ms": 0.1706
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.6035,
+    "temps_gpu_only_ms": 0.4383,
+    "latence_copies_ms": 0.1651
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.6198,
+    "temps_gpu_only_ms": 2.443,
+    "latence_copies_ms": 0.1768
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.2398,
+    "temps_gpu_only_ms": 2.0612,
+    "latence_copies_ms": 0.1786
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.7893,
+    "temps_gpu_only_ms": 1.6208,
+    "latence_copies_ms": 0.1685
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.7821,
+    "temps_gpu_only_ms": 0.6131,
+    "latence_copies_ms": 0.169
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.0498,
+    "temps_gpu_only_ms": 2.8729,
+    "latence_copies_ms": 0.177
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.0429,
+    "temps_gpu_only_ms": 1.8665,
+    "latence_copies_ms": 0.1764
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.758,
+    "temps_gpu_only_ms": 2.5931,
+    "latence_copies_ms": 0.1649
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.0079,
+    "temps_gpu_only_ms": 0.8412,
+    "latence_copies_ms": 0.1667
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.6453,
+    "temps_gpu_only_ms": 3.468,
+    "latence_copies_ms": 0.1773
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 1.8984,
+    "temps_gpu_only_ms": 1.7233,
+    "latence_copies_ms": 0.1751
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.8781,
+    "temps_gpu_only_ms": 3.6922,
+    "latence_copies_ms": 0.1859
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.3031,
+    "temps_gpu_only_ms": 1.1369,
+    "latence_copies_ms": 0.1662
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 4.5922,
+    "temps_gpu_only_ms": 4.4135,
+    "latence_copies_ms": 0.1787
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.0319,
+    "temps_gpu_only_ms": 1.857,
+    "latence_copies_ms": 0.1749
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.5477,
+    "temps_gpu_only_ms": 2.0265,
+    "latence_copies_ms": 0.5212
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.6856,
+    "temps_gpu_only_ms": 1.1617,
+    "latence_copies_ms": 0.524
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 6.3098,
+    "temps_gpu_only_ms": 5.7791,
+    "latence_copies_ms": 0.5307
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 5.4496,
+    "temps_gpu_only_ms": 4.9139,
+    "latence_copies_ms": 0.5357
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 4.4862,
+    "temps_gpu_only_ms": 3.968,
+    "latence_copies_ms": 0.5182
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 2.0901,
+    "temps_gpu_only_ms": 1.5684,
+    "latence_copies_ms": 0.5217
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 8.0018,
+    "temps_gpu_only_ms": 7.4886,
+    "latence_copies_ms": 0.5131
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 5.6192,
+    "temps_gpu_only_ms": 5.083,
+    "latence_copies_ms": 0.5362
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 7.1165,
+    "temps_gpu_only_ms": 6.5739,
+    "latence_copies_ms": 0.5426
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 2.7135,
+    "temps_gpu_only_ms": 2.1921,
+    "latence_copies_ms": 0.5214
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 10.405,
+    "temps_gpu_only_ms": 9.8676,
+    "latence_copies_ms": 0.5374
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 6.0191,
+    "temps_gpu_only_ms": 5.4854,
+    "latence_copies_ms": 0.5337
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 10.4467,
+    "temps_gpu_only_ms": 9.8996,
+    "latence_copies_ms": 0.5471
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 3.4681,
+    "temps_gpu_only_ms": 2.9508,
+    "latence_copies_ms": 0.5173
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 13.5724,
+    "temps_gpu_only_ms": 13.0218,
+    "latence_copies_ms": 0.5506
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 6.5799,
+    "temps_gpu_only_ms": 6.0574,
+    "latence_copies_ms": 0.5225
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 4.4672,
+    "temps_gpu_only_ms": 3.9403,
+    "latence_copies_ms": 0.5269
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 2.7817,
+    "temps_gpu_only_ms": 2.2539,
+    "latence_copies_ms": 0.5278
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 11.7853,
+    "temps_gpu_only_ms": 11.2422,
+    "latence_copies_ms": 0.5431
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 10.0948,
+    "temps_gpu_only_ms": 9.5588,
+    "latence_copies_ms": 0.536
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 8.2247,
+    "temps_gpu_only_ms": 7.6897,
+    "latence_copies_ms": 0.535
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 3.605,
+    "temps_gpu_only_ms": 3.0834,
+    "latence_copies_ms": 0.5216
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 15.2817,
+    "temps_gpu_only_ms": 14.7264,
+    "latence_copies_ms": 0.5552
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 10.6598,
+    "temps_gpu_only_ms": 10.107,
+    "latence_copies_ms": 0.5528
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 13.3782,
+    "temps_gpu_only_ms": 12.8378,
+    "latence_copies_ms": 0.5404
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 4.8476,
+    "temps_gpu_only_ms": 4.3272,
+    "latence_copies_ms": 0.5204
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 19.9282,
+    "temps_gpu_only_ms": 19.3778,
+    "latence_copies_ms": 0.5504
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 11.3985,
+    "temps_gpu_only_ms": 10.852,
+    "latence_copies_ms": 0.5465
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 19.6657,
+    "temps_gpu_only_ms": 19.115,
+    "latence_copies_ms": 0.5506
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 6.4077,
+    "temps_gpu_only_ms": 5.8756,
+    "latence_copies_ms": 0.5321
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 25.7774,
+    "temps_gpu_only_ms": 25.2097,
+    "latence_copies_ms": 0.5677
+  },
+  {
+    "configuration": "N=256, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 12.5151,
+    "temps_gpu_only_ms": 11.9754,
+    "latence_copies_ms": 0.5397
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.1018,
+    "temps_gpu_only_ms": 0.8155,
+    "latence_copies_ms": 0.2863
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.7216,
+    "temps_gpu_only_ms": 0.4367,
+    "latence_copies_ms": 0.2849
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.639,
+    "temps_gpu_only_ms": 2.3365,
+    "latence_copies_ms": 0.3024
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.2584,
+    "temps_gpu_only_ms": 1.9545,
+    "latence_copies_ms": 0.304
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 1.8895,
+    "temps_gpu_only_ms": 1.5998,
+    "latence_copies_ms": 0.2898
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 0.8862,
+    "temps_gpu_only_ms": 0.5987,
+    "latence_copies_ms": 0.2875
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.0599,
+    "temps_gpu_only_ms": 2.7563,
+    "latence_copies_ms": 0.3037
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.0551,
+    "temps_gpu_only_ms": 1.7514,
+    "latence_copies_ms": 0.3037
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.8791,
+    "temps_gpu_only_ms": 2.5861,
+    "latence_copies_ms": 0.2929
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.1381,
+    "temps_gpu_only_ms": 0.8502,
+    "latence_copies_ms": 0.288
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.795,
+    "temps_gpu_only_ms": 3.4878,
+    "latence_copies_ms": 0.3072
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.0501,
+    "temps_gpu_only_ms": 1.7471,
+    "latence_copies_ms": 0.303
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.9563,
+    "temps_gpu_only_ms": 3.6676,
+    "latence_copies_ms": 0.2888
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.4197,
+    "temps_gpu_only_ms": 1.133,
+    "latence_copies_ms": 0.2867
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 4.7427,
+    "temps_gpu_only_ms": 4.4598,
+    "latence_copies_ms": 0.2829
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 2.2127,
+    "temps_gpu_only_ms": 1.9099,
+    "latence_copies_ms": 0.3028
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.1059,
+    "temps_gpu_only_ms": 1.8152,
+    "latence_copies_ms": 0.2907
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.3966,
+    "temps_gpu_only_ms": 1.1085,
+    "latence_copies_ms": 0.2881
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 5.7195,
+    "temps_gpu_only_ms": 5.4167,
+    "latence_copies_ms": 0.3028
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 5.016,
+    "temps_gpu_only_ms": 4.7117,
+    "latence_copies_ms": 0.3043
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.6173,
+    "temps_gpu_only_ms": 3.3298,
+    "latence_copies_ms": 0.2876
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.7035,
+    "temps_gpu_only_ms": 1.4141,
+    "latence_copies_ms": 0.2893
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 6.8226,
+    "temps_gpu_only_ms": 6.5194,
+    "latence_copies_ms": 0.3032
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 4.9104,
+    "temps_gpu_only_ms": 4.5997,
+    "latence_copies_ms": 0.3107
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 5.4502,
+    "temps_gpu_only_ms": 5.1657,
+    "latence_copies_ms": 0.2845
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 2.1583,
+    "temps_gpu_only_ms": 1.8686,
+    "latence_copies_ms": 0.2897
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 8.2536,
+    "temps_gpu_only_ms": 7.9408,
+    "latence_copies_ms": 0.3128
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 4.9552,
+    "temps_gpu_only_ms": 4.6519,
+    "latence_copies_ms": 0.3033
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 7.3937,
+    "temps_gpu_only_ms": 7.1052,
+    "latence_copies_ms": 0.2885
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 2.6752,
+    "temps_gpu_only_ms": 2.3869,
+    "latence_copies_ms": 0.2883
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 9.6947,
+    "temps_gpu_only_ms": 9.3738,
+    "latence_copies_ms": 0.3209
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 4.97,
+    "temps_gpu_only_ms": 4.6663,
+    "latence_copies_ms": 0.3038
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 4.9667,
+    "temps_gpu_only_ms": 3.8727,
+    "latence_copies_ms": 1.0939
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 3.2845,
+    "temps_gpu_only_ms": 2.1996,
+    "latence_copies_ms": 1.0848
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 12.5108,
+    "temps_gpu_only_ms": 11.3817,
+    "latence_copies_ms": 1.1291
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 10.8039,
+    "temps_gpu_only_ms": 9.7123,
+    "latence_copies_ms": 1.0916
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 8.7238,
+    "temps_gpu_only_ms": 7.625,
+    "latence_copies_ms": 1.0989
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 4.1057,
+    "temps_gpu_only_ms": 3.0145,
+    "latence_copies_ms": 1.0912
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 15.8057,
+    "temps_gpu_only_ms": 14.6826,
+    "latence_copies_ms": 1.1231
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 11.1895,
+    "temps_gpu_only_ms": 10.0768,
+    "latence_copies_ms": 1.1127
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 13.8666,
+    "temps_gpu_only_ms": 12.7556,
+    "latence_copies_ms": 1.111
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 5.3544,
+    "temps_gpu_only_ms": 4.2651,
+    "latence_copies_ms": 1.0893
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 20.4492,
+    "temps_gpu_only_ms": 19.3511,
+    "latence_copies_ms": 1.098
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 11.9483,
+    "temps_gpu_only_ms": 10.8502,
+    "latence_copies_ms": 1.0981
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 20.117,
+    "temps_gpu_only_ms": 19.0108,
+    "latence_copies_ms": 1.1062
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 6.9227,
+    "temps_gpu_only_ms": 5.8287,
+    "latence_copies_ms": 1.094
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 26.2936,
+    "temps_gpu_only_ms": 25.1608,
+    "latence_copies_ms": 1.1327
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 13.0937,
+    "temps_gpu_only_ms": 11.983,
+    "latence_copies_ms": 1.1107
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 8.752,
+    "temps_gpu_only_ms": 7.6249,
+    "latence_copies_ms": 1.127
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 5.4357,
+    "temps_gpu_only_ms": 4.3039,
+    "latence_copies_ms": 1.1318
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 23.2472,
+    "temps_gpu_only_ms": 22.1723,
+    "latence_copies_ms": 1.0748
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 19.9698,
+    "temps_gpu_only_ms": 18.852,
+    "latence_copies_ms": 1.1178
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 16.1048,
+    "temps_gpu_only_ms": 15.0067,
+    "latence_copies_ms": 1.0982
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 7.0487,
+    "temps_gpu_only_ms": 5.987,
+    "latence_copies_ms": 1.0617
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 30.2676,
+    "temps_gpu_only_ms": 29.1242,
+    "latence_copies_ms": 1.1434
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 21.2014,
+    "temps_gpu_only_ms": 20.0879,
+    "latence_copies_ms": 1.1134
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 26.2228,
+    "temps_gpu_only_ms": 25.1188,
+    "latence_copies_ms": 1.104
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 9.5549,
+    "temps_gpu_only_ms": 8.5044,
+    "latence_copies_ms": 1.0505
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 39.2941,
+    "temps_gpu_only_ms": 38.18,
+    "latence_copies_ms": 1.1141
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 22.6416,
+    "temps_gpu_only_ms": 21.5177,
+    "latence_copies_ms": 1.1239
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 38.54,
+    "temps_gpu_only_ms": 37.4277,
+    "latence_copies_ms": 1.1122
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 12.6809,
+    "temps_gpu_only_ms": 11.6151,
+    "latence_copies_ms": 1.0659
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 50.7422,
+    "temps_gpu_only_ms": 49.6087,
+    "latence_copies_ms": 1.1335
+  },
+  {
+    "configuration": "N=512, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 24.8858,
+    "temps_gpu_only_ms": 23.7753,
+    "latence_copies_ms": 1.1106
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 2.3441,
+    "temps_gpu_only_ms": 1.8146,
+    "latence_copies_ms": 0.5296
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.6286,
+    "temps_gpu_only_ms": 1.1,
+    "latence_copies_ms": 0.5286
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 6.1551,
+    "temps_gpu_only_ms": 5.5891,
+    "latence_copies_ms": 0.566
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 5.4453,
+    "temps_gpu_only_ms": 4.8685,
+    "latence_copies_ms": 0.5768
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 3.8666,
+    "temps_gpu_only_ms": 3.3341,
+    "latence_copies_ms": 0.5325
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 1.947,
+    "temps_gpu_only_ms": 1.4198,
+    "latence_copies_ms": 0.5272
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 7.3346,
+    "temps_gpu_only_ms": 6.7625,
+    "latence_copies_ms": 0.5721
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 5.4033,
+    "temps_gpu_only_ms": 4.8535,
+    "latence_copies_ms": 0.5498
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 5.6956,
+    "temps_gpu_only_ms": 5.1611,
+    "latence_copies_ms": 0.5345
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 2.4007,
+    "temps_gpu_only_ms": 1.8741,
+    "latence_copies_ms": 0.5266
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 8.6613,
+    "temps_gpu_only_ms": 8.0985,
+    "latence_copies_ms": 0.5628
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 5.37,
+    "temps_gpu_only_ms": 4.809,
+    "latence_copies_ms": 0.5611
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 7.6692,
+    "temps_gpu_only_ms": 7.1172,
+    "latence_copies_ms": 0.552
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 2.9373,
+    "temps_gpu_only_ms": 2.4066,
+    "latence_copies_ms": 0.5306
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 10.0229,
+    "temps_gpu_only_ms": 9.4508,
+    "latence_copies_ms": 0.5721
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 5.3106,
+    "temps_gpu_only_ms": 4.751,
+    "latence_copies_ms": 0.5596
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 4.0656,
+    "temps_gpu_only_ms": 3.5358,
+    "latence_copies_ms": 0.5299
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 2.6828,
+    "temps_gpu_only_ms": 2.1491,
+    "latence_copies_ms": 0.5337
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 11.3132,
+    "temps_gpu_only_ms": 10.7449,
+    "latence_copies_ms": 0.5683
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 9.9399,
+    "temps_gpu_only_ms": 9.3556,
+    "latence_copies_ms": 0.5842
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 7.0814,
+    "temps_gpu_only_ms": 6.5203,
+    "latence_copies_ms": 0.5612
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 3.3675,
+    "temps_gpu_only_ms": 2.785,
+    "latence_copies_ms": 0.5825
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 13.4287,
+    "temps_gpu_only_ms": 12.8502,
+    "latence_copies_ms": 0.5786
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 9.767,
+    "temps_gpu_only_ms": 9.1214,
+    "latence_copies_ms": 0.6455
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 10.6906,
+    "temps_gpu_only_ms": 10.1516,
+    "latence_copies_ms": 0.539
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 4.2992,
+    "temps_gpu_only_ms": 3.7762,
+    "latence_copies_ms": 0.523
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 16.3125,
+    "temps_gpu_only_ms": 15.6441,
+    "latence_copies_ms": 0.6684
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 9.8234,
+    "temps_gpu_only_ms": 9.2575,
+    "latence_copies_ms": 0.566
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 14.542,
+    "temps_gpu_only_ms": 13.9435,
+    "latence_copies_ms": 0.5985
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 5.4155,
+    "temps_gpu_only_ms": 4.8813,
+    "latence_copies_ms": 0.5342
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 19.309,
+    "temps_gpu_only_ms": 18.6833,
+    "latence_copies_ms": 0.6256
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=32x32, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 10.2101,
+    "temps_gpu_only_ms": 9.633,
+    "latence_copies_ms": 0.5771
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 9.7906,
+    "temps_gpu_only_ms": 7.5779,
+    "latence_copies_ms": 2.2127
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 6.5411,
+    "temps_gpu_only_ms": 4.2923,
+    "latence_copies_ms": 2.2488
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 24.9133,
+    "temps_gpu_only_ms": 22.6146,
+    "latence_copies_ms": 2.2987
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 21.6994,
+    "temps_gpu_only_ms": 19.3299,
+    "latence_copies_ms": 2.3694
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 17.1807,
+    "temps_gpu_only_ms": 14.956,
+    "latence_copies_ms": 2.2247
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 8.1713,
+    "temps_gpu_only_ms": 5.9547,
+    "latence_copies_ms": 2.2167
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 31.5607,
+    "temps_gpu_only_ms": 29.0603,
+    "latence_copies_ms": 2.5005
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 22.4493,
+    "temps_gpu_only_ms": 20.0338,
+    "latence_copies_ms": 2.4155
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 27.24,
+    "temps_gpu_only_ms": 25.0267,
+    "latence_copies_ms": 2.2133
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 10.6959,
+    "temps_gpu_only_ms": 8.4893,
+    "latence_copies_ms": 2.2066
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 40.4526,
+    "temps_gpu_only_ms": 38.1976,
+    "latence_copies_ms": 2.255
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 23.8891,
+    "temps_gpu_only_ms": 21.6064,
+    "latence_copies_ms": 2.2827
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 39.5257,
+    "temps_gpu_only_ms": 37.3122,
+    "latence_copies_ms": 2.2135
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 13.913,
+    "temps_gpu_only_ms": 11.6271,
+    "latence_copies_ms": 2.2859
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 51.9351,
+    "temps_gpu_only_ms": 49.6211,
+    "latence_copies_ms": 2.3139
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=16, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 26.11,
+    "temps_gpu_only_ms": 23.8824,
+    "latence_copies_ms": 2.2276
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 17.246,
+    "temps_gpu_only_ms": 15.0172,
+    "latence_copies_ms": 2.2288
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=3, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 10.7722,
+    "temps_gpu_only_ms": 8.4475,
+    "latence_copies_ms": 2.3247
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 46.3125,
+    "temps_gpu_only_ms": 44.0276,
+    "latence_copies_ms": 2.2849
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=3, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 39.6969,
+    "temps_gpu_only_ms": 37.502,
+    "latence_copies_ms": 2.1949
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 32.1488,
+    "temps_gpu_only_ms": 29.6856,
+    "latence_copies_ms": 2.4632
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=5, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 14.0652,
+    "temps_gpu_only_ms": 11.8592,
+    "latence_copies_ms": 2.2061
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 60.3436,
+    "temps_gpu_only_ms": 57.9974,
+    "latence_copies_ms": 2.3463
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=5, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 42.3535,
+    "temps_gpu_only_ms": 40.1075,
+    "latence_copies_ms": 2.246
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 52.0409,
+    "temps_gpu_only_ms": 49.7012,
+    "latence_copies_ms": 2.3397
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=7, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 19.0281,
+    "temps_gpu_only_ms": 16.9248,
+    "latence_copies_ms": 2.1033
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 78.178,
+    "temps_gpu_only_ms": 75.7541,
+    "latence_copies_ms": 2.4239
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=7, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 45.0523,
+    "temps_gpu_only_ms": 42.9025,
+    "latence_copies_ms": 2.1497
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "NAIVE",
+    "temps_total_ms": 76.2594,
+    "temps_gpu_only_ms": 74.0541,
+    "latence_copies_ms": 2.2054
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=9, FC=10",
+    "mode": "TILED",
+    "temps_total_ms": 25.2623,
+    "temps_gpu_only_ms": 23.2615,
+    "latence_copies_ms": 2.0008
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "NAIVE",
+    "temps_total_ms": 100.6302,
+    "temps_gpu_only_ms": 98.3687,
+    "latence_copies_ms": 2.2615
+  },
+  {
+    "configuration": "N=1024, Cin=3, HxW=64x64, Cout=32, K=9, FC=100",
+    "mode": "TILED",
+    "temps_total_ms": 49.5878,
+    "temps_gpu_only_ms": 47.4307,
+    "latence_copies_ms": 2.1571
+  }
+]

@@ -46,14 +46,14 @@ add_executable(cuda_rnn
 )
 target_link_libraries(cuda_rnn PRIVATE cublas)
 
-add_executable(cuda_rnnv2
+add_executable(cuda_rnn2
     src/main_rnn2.cu
-    src/rnnv2.cu
+    src/rnn2.cu
     src/cuda_kernels.cu
     src/utils.cpp
 )
 
-target_link_libraries(cuda_rnnv2 PRIVATE cublas)
+target_link_libraries(cuda_rnn2 PRIVATE cublas)
 
 add_executable(cuda_mlp2
     src/main_mlp2.cu

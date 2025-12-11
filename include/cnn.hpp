@@ -29,13 +29,14 @@ class SimpleCNN {
 
     void forward(const float *input_host, float *output_host, ConvMode mode = ConvMode::NAIVE);
 
-    void SimpleCNN::forward_device(const float* d_input_external, float* d_output_external, ConvMode mode = ConvMode::NAIVE);
+    void forward_device(const float* d_input_external, float* d_output_external, ConvMode mode = ConvMode::NAIVE);
 
     void forward_gpu_only(ConvMode mode = ConvMode::NAIVE);
 
    private:
     CNNConfig cfg_;
 
+    bool buffers_allocated_ = false;
     std::vector<float> h_conv_w;
     std::vector<float> h_conv_b;
     std::vector<float> h_fc_w;

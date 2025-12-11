@@ -1,0 +1,858 @@
+[
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 32,
+    "N_batch": 32,
+    "temps_total_ms": 0.1809,
+    "temps_gpu_only_ms": 0.0869
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 32,
+    "N_batch": 64,
+    "temps_total_ms": 0.2278,
+    "temps_gpu_only_ms": 0.0893
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 32,
+    "N_batch": 128,
+    "temps_total_ms": 0.3342,
+    "temps_gpu_only_ms": 0.091
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 32,
+    "N_batch": 256,
+    "temps_total_ms": 0.6139,
+    "temps_gpu_only_ms": 0.0958
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 32,
+    "N_batch": 512,
+    "temps_total_ms": 1.2064,
+    "temps_gpu_only_ms": 0.1199
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 32,
+    "N_batch": 1024,
+    "temps_total_ms": 2.3706,
+    "temps_gpu_only_ms": 0.2355
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 32,
+    "N_batch": 32,
+    "temps_total_ms": 0.1856,
+    "temps_gpu_only_ms": 0.094
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 32,
+    "N_batch": 64,
+    "temps_total_ms": 0.2745,
+    "temps_gpu_only_ms": 0.0988
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 32,
+    "N_batch": 128,
+    "temps_total_ms": 0.6815,
+    "temps_gpu_only_ms": 0.1873
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 32,
+    "N_batch": 256,
+    "temps_total_ms": 1.0136,
+    "temps_gpu_only_ms": 0.3236
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 32,
+    "N_batch": 512,
+    "temps_total_ms": 2.0279,
+    "temps_gpu_only_ms": 0.6643
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 32,
+    "N_batch": 1024,
+    "temps_total_ms": 4.102,
+    "temps_gpu_only_ms": 1.3577
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 32,
+    "N_batch": 32,
+    "temps_total_ms": 0.5072,
+    "temps_gpu_only_ms": 0.413
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 32,
+    "N_batch": 64,
+    "temps_total_ms": 0.551,
+    "temps_gpu_only_ms": 0.4149
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 32,
+    "N_batch": 128,
+    "temps_total_ms": 0.9147,
+    "temps_gpu_only_ms": 0.377
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 32,
+    "N_batch": 256,
+    "temps_total_ms": 1.4576,
+    "temps_gpu_only_ms": 0.4541
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 32,
+    "N_batch": 512,
+    "temps_total_ms": 2.5874,
+    "temps_gpu_only_ms": 0.5953
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 32,
+    "N_batch": 1024,
+    "temps_total_ms": 4.9525,
+    "temps_gpu_only_ms": 1.0046
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 32,
+    "N_batch": 32,
+    "temps_total_ms": 0.6289,
+    "temps_gpu_only_ms": 0.459
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 32,
+    "N_batch": 64,
+    "temps_total_ms": 0.8239,
+    "temps_gpu_only_ms": 0.4455
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 32,
+    "N_batch": 128,
+    "temps_total_ms": 1.4868,
+    "temps_gpu_only_ms": 0.6658
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 32,
+    "N_batch": 256,
+    "temps_total_ms": 2.3836,
+    "temps_gpu_only_ms": 0.7943
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 32,
+    "N_batch": 512,
+    "temps_total_ms": 4.6282,
+    "temps_gpu_only_ms": 1.4168
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 32,
+    "N_batch": 1024,
+    "temps_total_ms": 8.8847,
+    "temps_gpu_only_ms": 2.5362
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 64,
+    "N_batch": 32,
+    "temps_total_ms": 0.2269,
+    "temps_gpu_only_ms": 0.0912
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 64,
+    "N_batch": 64,
+    "temps_total_ms": 0.6636,
+    "temps_gpu_only_ms": 0.0937
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 64,
+    "N_batch": 128,
+    "temps_total_ms": 0.5888,
+    "temps_gpu_only_ms": 0.0998
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 64,
+    "N_batch": 256,
+    "temps_total_ms": 1.184,
+    "temps_gpu_only_ms": 0.1136
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 64,
+    "N_batch": 512,
+    "temps_total_ms": 2.3546,
+    "temps_gpu_only_ms": 0.2093
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 64,
+    "N_batch": 1024,
+    "temps_total_ms": 4.6464,
+    "temps_gpu_only_ms": 0.3968
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 64,
+    "N_batch": 32,
+    "temps_total_ms": 0.3142,
+    "temps_gpu_only_ms": 0.1567
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 64,
+    "N_batch": 64,
+    "temps_total_ms": 0.5351,
+    "temps_gpu_only_ms": 0.165
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 64,
+    "N_batch": 128,
+    "temps_total_ms": 1.0238,
+    "temps_gpu_only_ms": 0.3161
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 64,
+    "N_batch": 256,
+    "temps_total_ms": 1.9519,
+    "temps_gpu_only_ms": 0.5614
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 64,
+    "N_batch": 512,
+    "temps_total_ms": 3.9663,
+    "temps_gpu_only_ms": 1.19
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 64,
+    "N_batch": 1024,
+    "temps_total_ms": 7.7782,
+    "temps_gpu_only_ms": 2.367
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 64,
+    "N_batch": 32,
+    "temps_total_ms": 0.9018,
+    "temps_gpu_only_ms": 0.7407
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 64,
+    "N_batch": 64,
+    "temps_total_ms": 1.1933,
+    "temps_gpu_only_ms": 0.7255
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 64,
+    "N_batch": 128,
+    "temps_total_ms": 1.7356,
+    "temps_gpu_only_ms": 0.7437
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 64,
+    "N_batch": 256,
+    "temps_total_ms": 2.8809,
+    "temps_gpu_only_ms": 0.9121
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 64,
+    "N_batch": 512,
+    "temps_total_ms": 5.1116,
+    "temps_gpu_only_ms": 1.1729
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 64,
+    "N_batch": 1024,
+    "temps_total_ms": 9.7653,
+    "temps_gpu_only_ms": 1.9955
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 64,
+    "N_batch": 32,
+    "temps_total_ms": 1.2163,
+    "temps_gpu_only_ms": 0.8325
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 64,
+    "N_batch": 64,
+    "temps_total_ms": 1.68,
+    "temps_gpu_only_ms": 0.8582
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 64,
+    "N_batch": 128,
+    "temps_total_ms": 2.8952,
+    "temps_gpu_only_ms": 1.307
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 64,
+    "N_batch": 256,
+    "temps_total_ms": 4.7157,
+    "temps_gpu_only_ms": 1.5573
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 64,
+    "N_batch": 512,
+    "temps_total_ms": 9.0925,
+    "temps_gpu_only_ms": 2.78
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 64,
+    "N_batch": 1024,
+    "temps_total_ms": 17.5586,
+    "temps_gpu_only_ms": 5.0293
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 128,
+    "N_batch": 32,
+    "temps_total_ms": 0.3548,
+    "temps_gpu_only_ms": 0.0959
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 128,
+    "N_batch": 64,
+    "temps_total_ms": 0.6063,
+    "temps_gpu_only_ms": 0.0989
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 128,
+    "N_batch": 128,
+    "temps_total_ms": 1.1558,
+    "temps_gpu_only_ms": 0.1048
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 128,
+    "N_batch": 256,
+    "temps_total_ms": 2.3502,
+    "temps_gpu_only_ms": 0.2122
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 128,
+    "N_batch": 512,
+    "temps_total_ms": 4.5825,
+    "temps_gpu_only_ms": 0.3908
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 128,
+    "N_batch": 1024,
+    "temps_total_ms": 8.9778,
+    "temps_gpu_only_ms": 0.722
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 128,
+    "N_batch": 32,
+    "temps_total_ms": 0.6591,
+    "temps_gpu_only_ms": 0.2817
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 128,
+    "N_batch": 64,
+    "temps_total_ms": 0.9892,
+    "temps_gpu_only_ms": 0.2974
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 128,
+    "N_batch": 128,
+    "temps_total_ms": 1.9585,
+    "temps_gpu_only_ms": 0.5967
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 128,
+    "N_batch": 256,
+    "temps_total_ms": 3.8373,
+    "temps_gpu_only_ms": 1.0881
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 128,
+    "N_batch": 512,
+    "temps_total_ms": 7.5938,
+    "temps_gpu_only_ms": 2.2052
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 128,
+    "N_batch": 1024,
+    "temps_total_ms": 14.9971,
+    "temps_gpu_only_ms": 4.349
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 128,
+    "N_batch": 32,
+    "temps_total_ms": 1.8022,
+    "temps_gpu_only_ms": 1.3255
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 128,
+    "N_batch": 64,
+    "temps_total_ms": 2.2646,
+    "temps_gpu_only_ms": 1.3398
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 128,
+    "N_batch": 128,
+    "temps_total_ms": 3.6668,
+    "temps_gpu_only_ms": 1.7459
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 128,
+    "N_batch": 256,
+    "temps_total_ms": 5.7313,
+    "temps_gpu_only_ms": 1.8003
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 128,
+    "N_batch": 512,
+    "temps_total_ms": 10.1385,
+    "temps_gpu_only_ms": 2.3296
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 128,
+    "N_batch": 1024,
+    "temps_total_ms": 19.4116,
+    "temps_gpu_only_ms": 3.9737
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 128,
+    "N_batch": 32,
+    "temps_total_ms": 2.4749,
+    "temps_gpu_only_ms": 1.6448
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 128,
+    "N_batch": 64,
+    "temps_total_ms": 3.3435,
+    "temps_gpu_only_ms": 1.7353
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 128,
+    "N_batch": 128,
+    "temps_total_ms": 5.7899,
+    "temps_gpu_only_ms": 2.5966
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 128,
+    "N_batch": 256,
+    "temps_total_ms": 9.4381,
+    "temps_gpu_only_ms": 3.1032
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 128,
+    "N_batch": 512,
+    "temps_total_ms": 18.0654,
+    "temps_gpu_only_ms": 5.5291
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 128,
+    "N_batch": 1024,
+    "temps_total_ms": 35.0246,
+    "temps_gpu_only_ms": 10.0072
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 256,
+    "N_batch": 32,
+    "temps_total_ms": 0.6506,
+    "temps_gpu_only_ms": 0.1074
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 256,
+    "N_batch": 64,
+    "temps_total_ms": 1.2026,
+    "temps_gpu_only_ms": 0.12
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 256,
+    "N_batch": 128,
+    "temps_total_ms": 2.3245,
+    "temps_gpu_only_ms": 0.1774
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 256,
+    "N_batch": 256,
+    "temps_total_ms": 4.6693,
+    "temps_gpu_only_ms": 0.4337
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 256,
+    "N_batch": 512,
+    "temps_total_ms": 8.9899,
+    "temps_gpu_only_ms": 0.7412
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 256,
+    "N_batch": 1024,
+    "temps_total_ms": 17.832,
+    "temps_gpu_only_ms": 1.3489
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 256,
+    "N_batch": 32,
+    "temps_total_ms": 1.2229,
+    "temps_gpu_only_ms": 0.5311
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 256,
+    "N_batch": 64,
+    "temps_total_ms": 1.9437,
+    "temps_gpu_only_ms": 0.5754
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 256,
+    "N_batch": 128,
+    "temps_total_ms": 3.96,
+    "temps_gpu_only_ms": 1.2014
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 256,
+    "N_batch": 256,
+    "temps_total_ms": 7.495,
+    "temps_gpu_only_ms": 2.0899
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 256,
+    "N_batch": 512,
+    "temps_total_ms": 14.9362,
+    "temps_gpu_only_ms": 4.2115
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 256,
+    "N_batch": 1024,
+    "temps_total_ms": 29.5389,
+    "temps_gpu_only_ms": 8.278
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 256,
+    "N_batch": 32,
+    "temps_total_ms": 3.5346,
+    "temps_gpu_only_ms": 2.6199
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 256,
+    "N_batch": 64,
+    "temps_total_ms": 4.5253,
+    "temps_gpu_only_ms": 2.6222
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 256,
+    "N_batch": 128,
+    "temps_total_ms": 7.2149,
+    "temps_gpu_only_ms": 3.4091
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 256,
+    "N_batch": 256,
+    "temps_total_ms": 11.3481,
+    "temps_gpu_only_ms": 3.5298
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 256,
+    "N_batch": 512,
+    "temps_total_ms": 20.1748,
+    "temps_gpu_only_ms": 4.7064
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 512,
+    "T_seq_len": 256,
+    "N_batch": 1024,
+    "temps_total_ms": 38.7522,
+    "temps_gpu_only_ms": 7.8935
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 256,
+    "N_batch": 32,
+    "temps_total_ms": 4.9273,
+    "temps_gpu_only_ms": 3.2597
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 256,
+    "N_batch": 64,
+    "temps_total_ms": 6.6282,
+    "temps_gpu_only_ms": 3.394
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 256,
+    "N_batch": 128,
+    "temps_total_ms": 11.4948,
+    "temps_gpu_only_ms": 5.0986
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 256,
+    "N_batch": 256,
+    "temps_total_ms": 18.8132,
+    "temps_gpu_only_ms": 6.1334
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 256,
+    "N_batch": 512,
+    "temps_total_ms": 35.9643,
+    "temps_gpu_only_ms": 10.9995
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 1024,
+    "T_seq_len": 256,
+    "N_batch": 1024,
+    "temps_total_ms": 69.7581,
+    "temps_gpu_only_ms": 19.9732
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 512,
+    "N_batch": 32,
+    "temps_total_ms": 1.2824,
+    "temps_gpu_only_ms": 0.1978
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 512,
+    "N_batch": 64,
+    "temps_total_ms": 2.4115,
+    "temps_gpu_only_ms": 0.2411
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 512,
+    "N_batch": 128,
+    "temps_total_ms": 4.6504,
+    "temps_gpu_only_ms": 0.4234
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 512,
+    "N_batch": 256,
+    "temps_total_ms": 9.1249,
+    "temps_gpu_only_ms": 0.8283
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 512,
+    "N_batch": 512,
+    "temps_total_ms": 18.0539,
+    "temps_gpu_only_ms": 1.4199
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 128,
+    "T_seq_len": 512,
+    "N_batch": 1024,
+    "temps_total_ms": 35.4347,
+    "temps_gpu_only_ms": 2.6007
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 512,
+    "N_batch": 32,
+    "temps_total_ms": 2.4311,
+    "temps_gpu_only_ms": 1.0397
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 512,
+    "N_batch": 64,
+    "temps_total_ms": 3.9606,
+    "temps_gpu_only_ms": 1.1968
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 512,
+    "N_batch": 128,
+    "temps_total_ms": 7.7324,
+    "temps_gpu_only_ms": 2.3169
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 512,
+    "N_batch": 256,
+    "temps_total_ms": 14.7764,
+    "temps_gpu_only_ms": 4.0646
+  },
+  {
+    "D_input": 256,
+    "H_hidden": 256,
+    "T_seq_len": 512,
+    "N_batch": 512,
+    "temps_total_ms": 29.4995,
+    "temps_gpu_only_ms": 8.1993
+  }
+]

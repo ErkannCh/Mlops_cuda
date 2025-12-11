@@ -344,6 +344,7 @@ __global__ void feedforward_layer_kernel_optimized(
     float* __restrict__ output,        
     int batch, int in_f, int out_f)
 {
+    // in_f : nombre de features en entrée out_f : nombre de features en sortie 
     extern __shared__ float shared[];
 
     int b = blockIdx.y;
@@ -606,13 +607,7 @@ void gpu_conv2d_tiled(const float* d_input, const float* d_weight,
     checkCuda(cudaGetLastError(), "conv2d_tiled_kernel launch");
 }
 
-__inline__ __device__ float warp_reduce_sum(float val) {
-    for(int offset = 16; offset > 0; offset /= 2)
-        val += __shfl_down_sync(0xffffffff, val, offset);
-    return val;
-}
-
-__global__ void conv2d_warp_kernel(
+__global__ void conv2d_warp_32_outputs_kernel(
     const float* __restrict__ input,
     const float* __restrict__ weight,
     const float* __restrict__ bias,
@@ -620,34 +615,48 @@ __global__ void conv2d_warp_kernel(
     int N, int C_in, int H, int W,
     int C_out, int K, int H_out, int W_out)
 {
-    int n = blockIdx.z;
-    int co = blockIdx.y;
-    int out_idx = blockIdx.x;
+    size_t total_output_pixels = (size_t)N * C_out * H_out * W_out;
 
-    int out_y = out_idx / W_out;
-    int out_x = out_idx % W_out;
+    size_t output_start_offset = (size_t)blockIdx.x * blockDim.x;
+    size_t global_output_index = output_start_offset + threadIdx.x;
+
+    if (global_output_index >= total_output_pixels) {
+        return;
+    }
+
+    int out_x = global_output_index % W_out;
+    size_t index_restant = global_output_index / W_out;
+
+    int out_y = index_restant % H_out;
+    index_restant /= H_out;
+
+    int co = index_restant % C_out;
+    index_restant /= C_out;
+
+    int n = index_restant;
+
 
     float val = 0.0f;
 
     for (int ci = 0; ci < C_in; ci++) {
         for (int ky = 0; ky < K; ky++) {
-            for (int kx = threadIdx.x; kx < K; kx += warpSize) {
+            for (int kx = 0; kx < K; kx++) {
+                
                 int in_y = out_y + ky;
                 int in_x = out_x + kx;
 
-                float a = input[((n*C_in + ci)*H + in_y)*W + in_x];
-                float b = weight[((co*C_in + ci)*K + ky)*K + kx];
+                size_t input_idx = ((size_t)n * C_in + ci) * H * W + (size_t)in_y * W + in_x;
+                size_t weight_idx = ((size_t)co * C_in + ci) * K * K + (size_t)ky * K + kx;
+
+                float a = input[input_idx];
+                float b = weight[weight_idx];
                 
                 val += a * b;
             }
         }
     }
 
-    val = warp_reduce_sum(val);
-
-    if (threadIdx.x == 0)
-        output[((n*C_out + co)*H_out + out_y)*W_out + out_x] =
-            fmaxf(val + bias[co], 0.0f);
+    output[global_output_index] = fmaxf(val + bias[co], 0.0f);
 }
 
 void gpu_conv2d_warp(const float* d_input, const float* d_weight,
@@ -655,12 +664,10 @@ void gpu_conv2d_warp(const float* d_input, const float* d_weight,
                      int N, int C_in, int H, int W,
                      int C_out, int K, int H_out, int W_out) 
 {
-    // 1D block of 128 threads (4 warps)
-    dim3 blockSize(128);
-    // grid covers output H*W for each output channel, per batch
+    dim3 blockSize(32);
     dim3 gridSize(H_out * W_out, C_out, N);
 
-    conv2d_warp_kernel<<<gridSize, blockSize>>>(
+    conv2d_warp_32_outputs_kernel<<<gridSize, blockSize>>>(
         d_input, d_weight, d_bias, d_output,
         N, C_in, H, W, C_out, K, H_out, W_out
     );

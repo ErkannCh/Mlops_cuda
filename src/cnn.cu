@@ -35,6 +35,7 @@ SimpleCNN::~SimpleCNN() {
 }
 
 void SimpleCNN::allocate_device_buffers() {
+    if (buffers_allocated_) return;
     if(!d_input) {
         int N = cfg_.N;
         int fc_in_dim = cfg_.C_out_conv * H_out_ * W_out_;
@@ -43,6 +44,7 @@ void SimpleCNN::allocate_device_buffers() {
         checkCuda(cudaMalloc(&d_fc_in, sizeof(float) * N * fc_in_dim), "malloc d_fc_in");
         checkCuda(cudaMalloc(&d_output, sizeof(float) * N * cfg_.fc_out), "malloc d_output");
     }
+    buffers_allocated_ = true;
 }
 
 void SimpleCNN::copy_weights_to_device() {
@@ -177,7 +179,7 @@ void SimpleCNN::forward(const float* input_host, float* output_host, ConvMode mo
     flatten_nchw_kernel<<<gridSize, blockSize>>>(d_conv_out, d_fc_in, cfg_.N, cfg_.C_out_conv, H_out_, W_out_);
     checkCuda(cudaGetLastError(), "flatten kernel");
 
-    // Feedforward optimisé
+    // Feedforward
     dim3 threads(256);
     dim3 blocks(cfg_.fc_out, cfg_.N);
     size_t shared_mem_bytes = threads.x * sizeof(float);
