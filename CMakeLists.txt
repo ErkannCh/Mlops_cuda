@@ -62,3 +62,11 @@ add_executable(cuda_mlp2
     src/utils.cpp
 )
 target_link_libraries(cuda_mlp2 PRIVATE cublas)
+
+add_executable(cuda_demo
+    src/main_demo.cu
+    src/mlp.cu
+    src/cuda_kernels.cu
+    src/utils.cpp
+)
+target_link_libraries(cuda_demo PRIVATE cublas)

@@ -126,12 +126,12 @@ int main() {
         std::cerr << "ATTENTION: Impossible d'ouvrir le fichier de log " << OUTPUT_FILENAME_CNN << ". Les résultats ne seront affichés que dans la console." << std::endl;
     }
 
-    std::vector<int> N_vals = {32, 64, 128, 256, 512, 1024};
+    std::vector<int> N_vals = {32, 64, 128};
     std::vector<int> C_in_vals = {3}; // Fixé à 3
-    std::vector<int> H_W_vals = {32, 64}; // H=W
-    std::vector<int> C_out_conv_vals = {16, 32};
-    std::vector<int> K_vals = {3, 5, 7, 9};
-    std::vector<int> FC_OUT_vals = {10, 100};
+    std::vector<int> H_W_vals = {32}; // H=W
+    std::vector<int> C_out_conv_vals = {16};
+    std::vector<int> K_vals = {3};
+    std::vector<int> FC_OUT_vals = {10};
 
     std::vector<CNNArchConfig> archs;
     
